@@ -12,7 +12,7 @@ public class RandomizedCooldown : MonoBehaviour {
     private float cooldownRandomizer = 0.3f;
 
     void Start() {
-        cooldown = normalCooldownStartValue;
+        normalCooldownStartValue = cooldown;
     }
 
     void FixedUpdate() {

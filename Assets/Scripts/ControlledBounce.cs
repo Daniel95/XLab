@@ -7,13 +7,13 @@ public class ControlledBounce : MonoBehaviour {
     private Transform circle;
 
     [SerializeField]
-    private float gravityStrength = 1;
+    private float gravityStrength = 0.0035f;
 
     [SerializeField]
-    private float minDistance = 0.01f;
+    private float minDistance = 0.05f;
 
     [SerializeField]
-    private float time = 10;
+    private float time = 30;
 
     private float startTime;
 
@@ -22,6 +22,7 @@ public class ControlledBounce : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        startTime = time;
     }
 
     void OnCollisionEnter() {
@@ -33,7 +34,7 @@ public class ControlledBounce : MonoBehaviour {
     {
         time = startTime;
 
-        while (Vector2.Distance(transform.position, circle.transform.position) > minDistance || time > 0)
+        while (Vector2.Distance(transform.position, circle.transform.position) > minDistance && time > 0)
         {
             time--;
 

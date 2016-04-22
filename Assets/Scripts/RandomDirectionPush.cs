@@ -6,6 +6,9 @@ public class RandomDirectionPush : RandomizedCooldown {
     [SerializeField]
     private float pushStrength = 1f;
 
+    [SerializeField]
+    private float pushStrengthRandomizer = 0.5f;
+
     private Rigidbody rb;
 
     void Start()
@@ -16,6 +19,11 @@ public class RandomDirectionPush : RandomizedCooldown {
     protected override void Execute()
     {
         base.Execute();
-        rb.AddForce(new Vector2(Random.Range(-pushStrength,pushStrength), Random.Range(-pushStrength, pushStrength)));
+
+        float randomStrength = Random.Range(-pushStrengthRandomizer, pushStrengthRandomizer);
+
+        float totalStrength = pushStrength + randomStrength;
+
+        rb.AddForce(new Vector2(Random.Range(-totalStrength, totalStrength), Random.Range(-totalStrength, totalStrength)));
     }
 }
