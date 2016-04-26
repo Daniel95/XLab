@@ -12,6 +12,7 @@ public class MoveTowards : MonoBehaviour
     private float rotateSpeed = 0.1f;
 
     //the current target we are moving towards
+    [SerializeField]
     private Vector2 currentTarget;
 
     private Quaternion targetRotation;
