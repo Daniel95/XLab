@@ -38,6 +38,7 @@ public class ControlledBounce : MonoBehaviour {
         {
             time--;
 
+            //the difference to the target
             Vector2 vectorToTarget = new Vector2(circle.position.x, circle.position.y) - new Vector2(transform.position.x, transform.position.y);
 
             //calculate the angle to our target

@@ -9,8 +9,11 @@ public class Node {
 
     private bool occupied;
 
-    public Node(int _x, int _y)
+    private GameObject testObj;
+
+    public Node(int _x, int _y, GameObject _testObj)
     {
+        testObj = _testObj;
         x = _x;
         y = _y;
     }
@@ -29,5 +32,10 @@ public class Node {
     {
         get { return occupied; }
         set { occupied = value; }
+    }
+
+    public GameObject TestObj {
+        set { testObj = value; }
+        get { return testObj; }
     }
 }

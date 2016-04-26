@@ -19,10 +19,12 @@ public class GridController : MonoBehaviour {
         nodes = new Node[xLength, yLength];
         for (int x = 0; x < xLength; x++) {
             for (int y = 0; y < yLength; y++) {
-                nodes[x, y] = new Node(x, y);
+                GameObject obj = Instantiate(testObj, new Vector3(0,0), transform.rotation) as GameObject;
+                nodes[x, y] = new Node(x, y, obj);
+                nodes[x, y].TestObj.transform.position = new Vector2(nodes[x, y].X, nodes[x, y].Y);
+                nodes[x, y].TestObj.SetActive(false);
             }
         }
-        FillSpot();
     }
 
     public void FillSpot()
@@ -33,7 +35,7 @@ public class GridController : MonoBehaviour {
 
         int xDirection = 1;
 
-        int yDirection = 1;
+        int yDirection = 0;
 
         int rowLengthToCheck = 1;
 
@@ -46,7 +48,6 @@ public class GridController : MonoBehaviour {
         bool increaseRowLength = false;
 
         while (nodes[xPosToChange, yPosToChange].Occupied) {
-            print("check");
             //go to the next node in the row
             if (index < rowLengthToCheck)
             {
@@ -103,18 +104,27 @@ public class GridController : MonoBehaviour {
                 else
                     increaseRowLength = true;
             }
-            print("yooy");
-            Instantiate(testObj, new Vector2(nodes[xPosToChange, yPosToChange].X * 10, nodes[xPosToChange, yPosToChange].Y * 10), transform.rotation);
-            nodes[xPosToChange, yPosToChange].Occupied = true;
-
-            FillSpot();
         }
+
+        nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
+        nodes[xPosToChange, yPosToChange].Occupied = true;
     }
-
-
 
     public void EmptySpot()
     {
+        List<Node> occupiedNodes = new List<Node>();
 
+        foreach (Node node in nodes) {
+            if (node.Occupied) {
+                occupiedNodes.Add(node);
+            }
+        }
+
+        if (occupiedNodes != null)
+        {
+            Node nodeToDestroy = occupiedNodes[Random.Range(0, occupiedNodes.Count)];
+            nodeToDestroy.Occupied = false;
+            nodeToDestroy.TestObj.SetActive(false);
+        }
     }
 }
