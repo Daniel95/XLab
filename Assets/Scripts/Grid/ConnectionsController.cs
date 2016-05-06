@@ -9,6 +9,9 @@ public class ConnectionsController : MonoBehaviour {
     [SerializeField]
     private GridController gridController;
 
+    [SerializeField]
+    private Spawner spawner;
+
     private int oldValue = 0;
 
     void Start() {
@@ -18,11 +21,13 @@ public class ConnectionsController : MonoBehaviour {
     void OnEnable()
     {
         loadData.FinishedLoading += ControlGridFunctions;
+        gridController.ChosenNode += SpawnOccupiers;
     }
 
     void OnDisable()
     {
         loadData.FinishedLoading -= ControlGridFunctions;
+        gridController.ChosenNode -= SpawnOccupiers;
     }
      
     void ControlGridFunctions(int _newValue) {
@@ -32,21 +37,20 @@ public class ConnectionsController : MonoBehaviour {
         if (difference < 0)
         {
             for (int i = 0; i < Mathf.Abs(difference); i++) {
-                gridController.EmptySpot();
+                gridController.EmptyNode();
             }
         }
         else if (difference > 0)
         {
             for (int i = 0; i < difference; i++)
             {
-                gridController.FillSpot();
+                gridController.FillNode();
             }
         }
     }
 
     IEnumerator RandomIncrementOrDecrement()
     {
-        
         int difference = Random.Range(-1, 2);
         if (difference < 1) {
             difference = Random.Range(-1, 2);
@@ -56,19 +60,23 @@ public class ConnectionsController : MonoBehaviour {
         {
             for (int i = 0; i < Mathf.Abs(difference); i++)
             {
-                gridController.EmptySpot();
+                gridController.EmptyNode();
             }
         }
         else if (difference > 0)
         {
             for (int i = 0; i < difference; i++)
             {
-                gridController.FillSpot();
+                gridController.FillNode();
             }
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(3f);
 
         StartCoroutine(RandomIncrementOrDecrement());
+    }
+
+    void SpawnOccupiers(Node _node, float _nodeSize) {
+        spawner.Spawn(_node, _nodeSize);
     }
 }

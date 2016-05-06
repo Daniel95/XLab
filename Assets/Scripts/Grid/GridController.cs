@@ -3,51 +3,67 @@ using System.Collections.Generic;
 
 public class GridController : MonoBehaviour {
 
+    //delegate type
+    public delegate void GridControllerMethods(Node _node, float nodeSize);
+
+    //delegate instance
+    public GridControllerMethods ChosenNode;
+
     [SerializeField]
     private GameObject testObj;
 
     [SerializeField]
-    private int xLength = 10;
+    private int maxXLength = 10;
 
     [SerializeField]
-    private int yLength = 10;
+    private int maxYLength = 10;
+
+    private int occupatedNodesRowsRadius;
+
+    [SerializeField]
+    private float nodeSize = 1;
 
     private Node[,] nodes;
 
     void Awake()
     {
-        nodes = new Node[xLength, yLength];
-        for (int x = 0; x < xLength; x++) {
-            for (int y = 0; y < yLength; y++) {
+        //make the nodes
+        nodes = new Node[maxXLength, maxYLength];
+        for (int x = 0; x < maxXLength; x++) {
+            for (int y = 0; y < maxYLength; y++) {
                 GameObject obj = Instantiate(testObj, new Vector3(0,0), transform.rotation) as GameObject;
                 nodes[x, y] = new Node(x, y, obj);
-                nodes[x, y].TestObj.transform.position = new Vector2(nodes[x, y].X, nodes[x, y].Y);
+                nodes[x, y].TestObj.transform.position = new Vector2(nodes[x, y].X * nodeSize, nodes[x, y].Y * nodeSize);
                 nodes[x, y].TestObj.SetActive(false);
             }
         }
     }
 
-    public void FillSpot()
+    public void FillNode()
     {
-        int xPosToChange = xLength / 2;
+        //our starting position
+        int xPosToChange = maxXLength / 2;
 
-        int yPosToChange = yLength / 2;
-
+        int yPosToChange = maxYLength / 2;
+        
+        //our current, 2d direction
         int xDirection = 1;
 
         int yDirection = 0;
 
         int rowLengthToCheck = 1;
 
+        //index that we use to count
         int index = 0;
 
+        //so we can check what the direction was when we last changed it
         bool xWasPos = false;
 
         bool yWasPos = true;
 
         bool increaseRowLength = false;
 
-        while (nodes[xPosToChange, yPosToChange].Occupied) {
+        while (CheckNodeOccupied(xPosToChange, yPosToChange)) {
             //go to the next node in the row
             if (index < rowLengthToCheck)
             {
@@ -61,39 +77,9 @@ public class GridController : MonoBehaviour {
                 //reset the index
                 index = 0;
 
-                //let the x direction go back and forth between 1- , 0 and 1
-                if (xDirection == 0)
-                {
-                    if (xWasPos)
-                        xDirection = -1;
-                    else
-                        xDirection = 1;
-                }
-                else
-                {
-                    if (xDirection > 0)
-                        xWasPos = true;
-                    else
-                        xWasPos = false;
-                    xDirection = 0;
-                }
-
-                //let the y direction go back and forth between 1- , 0 and 1
-                if (yDirection == 0)
-                {
-                    if (yWasPos)
-                        yDirection = -1;
-                    else
-                        yDirection = 1;
-                }
-                else
-                {
-                    if (yDirection > 0)
-                        yWasPos = true;
-                    else
-                        yWasPos = false;
-                    yDirection = 0;
-                }
+                //go to the next direction for x and y
+                BackAndForth(ref xDirection, ref xWasPos);
+                BackAndForth(ref yDirection, ref yWasPos);
 
                 //increase row length alternately
                 if (increaseRowLength)
@@ -106,25 +92,104 @@ public class GridController : MonoBehaviour {
             }
         }
 
-        nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
-        nodes[xPosToChange, yPosToChange].Occupied = true;
+
+        //check how many nodes are occupied
+        int occupiedNodeIndex = 0;
+
+        foreach (Node node in nodes)
+        {
+            if (node.Occupied)
+            {
+                occupiedNodeIndex++;
+            }
+        }
+
+        //calc the new node radius, so the camera can use that number to zoom in or out
+        occupatedNodesRowsRadius = OccupiedNodesRadius(occupiedNodeIndex);
+
+        if (xPosToChange < maxXLength && yPosToChange < maxYLength)
+        {
+            nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
+            nodes[xPosToChange, yPosToChange].Occupied = true;
+
+            if (ChosenNode != null)
+                ChosenNode(nodes[xPosToChange, yPosToChange], nodeSize);
+        }
     }
 
-    public void EmptySpot()
+    bool CheckNodeOccupied(int _x, int _y) {
+        //check if the node is occupied, and check if the node we are checking exists
+        if (_x < maxXLength && _y < maxYLength)
+            return nodes[_x, _y].Occupied;
+        else
+            return false;
+    }
+    
+    //goes back and forth between -1 and 1
+    private void BackAndForth(ref int _dir, ref bool _wasPos) {
+        //if it is zero, what the direction was when we last changed it
+        if (_dir == 0)
+        {
+            if (_wasPos)
+                _dir = -1;
+            else
+                _dir = 1;
+        }
+        else //if it is positive or negative, set the bool positive or negative, and set the dir to zero
+        {
+            if (_dir > 0)
+                _wasPos = true;
+            else
+                _wasPos = false;
+            _dir = 0;
+        }
+    }
+
+    private int OccupiedNodesRadius(int _occupiedNodesAmount) {
+        return Mathf.FloorToInt(Mathf.FloorToInt(Mathf.Sqrt(_occupiedNodesAmount)) / 2);
+    }
+
+    public void EmptyNode()
     {
         List<Node> occupiedNodes = new List<Node>();
 
+        //add all occupied nodes to a list
         foreach (Node node in nodes) {
             if (node.Occupied) {
                 occupiedNodes.Add(node);
             }
         }
 
-        if (occupiedNodes != null)
+        //calc the new node radius, so the camera can use that number to zoom in or out
+        occupatedNodesRowsRadius = OccupiedNodesRadius(occupiedNodes.Count);
+
+        //empty a random node of occupiednodes
+        if (occupiedNodes.Count != 0)
         {
-            Node nodeToDestroy = occupiedNodes[Random.Range(0, occupiedNodes.Count)];
-            nodeToDestroy.Occupied = false;
-            nodeToDestroy.TestObj.SetActive(false);
+            Node nodeToEmpty = occupiedNodes[Random.Range(0, occupiedNodes.Count)];
+            nodeToEmpty.Occupied = false;
+            nodeToEmpty.TestObj.SetActive(false);
+            nodeToEmpty.RemoveOccupiers();
         }
+    }
+
+    public float NodeSize
+    {
+        get { return nodeSize; }
+    }
+
+    public float MaxXLength
+    {
+        get { return maxXLength; }
+    }
+
+    public float MaxYLength
+    {
+        get { return maxYLength; }
+    }
+
+    public int OccupatedNodesRowsRadius
+    {
+        get { return occupatedNodesRowsRadius; }
     }
 }

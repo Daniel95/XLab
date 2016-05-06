@@ -11,6 +11,9 @@ public class Node {
 
     private GameObject testObj;
 
+    private GameObject occupier1;
+    private GameObject occupier2;
+
     public Node(int _x, int _y, GameObject _testObj)
     {
         testObj = _testObj;
@@ -37,5 +40,16 @@ public class Node {
     public GameObject TestObj {
         set { testObj = value; }
         get { return testObj; }
+    }
+
+    public void AddOccupiers(GameObject _occupier1, GameObject _occupier2) {
+        occupier1 = _occupier1;
+        occupier2 = _occupier2;
+    }
+
+    public void RemoveOccupiers()
+    {
+        occupier1.GetComponent<MoveTowards>().MoveAway();
+        occupier2.GetComponent<MoveTowards>().MoveAway();
     }
 }

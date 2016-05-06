@@ -46,6 +46,10 @@ public class MoveTowards : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed);
     }
 
+    public void MoveAway() {
+        Destroy(gameObject);
+    }
+
     // van buitenaf kun je de huidige target uitlezen
     public Vector2 Target
     {

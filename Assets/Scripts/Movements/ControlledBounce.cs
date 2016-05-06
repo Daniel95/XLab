@@ -25,9 +25,8 @@ public class ControlledBounce : MonoBehaviour {
         startTime = time;
     }
 
-    void OnCollisionEnter() {
+    void OnCollisionEnter(Collision collision) {
         StartCoroutine(ApplyGravity());
-
     }
 
     IEnumerator ApplyGravity()
