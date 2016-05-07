@@ -54,6 +54,8 @@ public class ConnectionsController : MonoBehaviour {
         int difference = Random.Range(-1, 2);
         if (difference < 1) {
             difference = Random.Range(-1, 2);
+            if(difference < 1)
+                difference = Random.Range(-1, 2);
         }
 
         if (difference < 0)
@@ -71,7 +73,7 @@ public class ConnectionsController : MonoBehaviour {
             }
         }
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
 
         StartCoroutine(RandomIncrementOrDecrement());
     }

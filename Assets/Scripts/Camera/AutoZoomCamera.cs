@@ -7,7 +7,9 @@ public class AutoZoomCamera : MonoBehaviour
     private GridController gridController;
 
     [SerializeField]
-    private float zoom;
+    private float zoomTime;
+
+    private Vector3 velocity;
 
     private Camera camera;
 
@@ -21,6 +23,7 @@ public class AutoZoomCamera : MonoBehaviour
     }
 
     void Update() {
-        transform.position = new Vector3(startPos.x, startPos.y, startPos.z - gridController.NodeSize * (gridController.OccupatedNodesRowsRadius * 2));
+        if (transform.position != new Vector3(startPos.x, startPos.y, startPos.z - gridController.NodeSize * (gridController.OccupatedNodesRowsRadius * 2)))
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(startPos.x, startPos.y, startPos.z - gridController.NodeSize * (gridController.OccupatedNodesRowsRadius * 2)), ref velocity, zoomTime);
     }
 }
