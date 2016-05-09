@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour {
 
@@ -16,7 +16,10 @@ public class Spawner : MonoBehaviour {
     private Transform spawnPointRight2;
 
     [SerializeField]
-    private GameObject objectToSpawn;
+    private List<GameObject> studentsToSpawn;
+
+    [SerializeField]
+    private List<GameObject> teachterToSpawn;
 
     [SerializeField]
     private float nodeRamdomizerMaxBounds = 0.60f;
@@ -29,7 +32,7 @@ public class Spawner : MonoBehaviour {
 
         //spawn occupier 1 on the left
         float yPosLeft = Random.Range(spawnPointLeft1.position.y, spawnPointLeft2.position.y);
-        GameObject user1 = Instantiate(objectToSpawn, new Vector2(spawnPointLeft1.position.x, yPosLeft), transform.rotation) as GameObject;
+        GameObject user1 = Instantiate(studentsToSpawn[Random.Range(0, studentsToSpawn.Count - 1)], new Vector2(spawnPointLeft1.position.x, yPosLeft), transform.rotation) as GameObject;
 
         //choose a random position in the adjusted node size for x & y
         float randomX = Random.Range(nodeRamdomizerMinBounds * _nodeSize, nodeRamdomizerMaxBounds * _nodeSize);
@@ -45,7 +48,7 @@ public class Spawner : MonoBehaviour {
 
         //spawn occupier 2 on the right
         float yPosRight = Random.Range(spawnPointRight1.position.y, spawnPointRight2.position.y);
-        GameObject user2 = Instantiate(objectToSpawn, new Vector2(spawnPointRight1.position.x, yPosRight), transform.rotation) as GameObject;
+        GameObject user2 = Instantiate(teachterToSpawn[Random.Range(0, teachterToSpawn.Count - 1)], new Vector2(spawnPointRight1.position.x, yPosRight), transform.rotation) as GameObject;
 
         //give the target location to occupier 1, with its random coordinates mirrored
         user2.GetComponent<MoveTowards>().Target = new Vector2(_newNode.X * _nodeSize + (randomX * -1), _newNode.Y * _nodeSize + (randomY * -1));
