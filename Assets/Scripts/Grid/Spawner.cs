@@ -32,7 +32,7 @@ public class Spawner : MonoBehaviour {
 
         //spawn occupier 1 on the left
         float yPosLeft = Random.Range(spawnPointLeft1.position.y, spawnPointLeft2.position.y);
-        GameObject user1 = Instantiate(studentsToSpawn[Random.Range(0, studentsToSpawn.Count - 1)], new Vector2(spawnPointLeft1.position.x, yPosLeft), transform.rotation) as GameObject;
+        GameObject occupier1 = Instantiate(studentsToSpawn[Random.Range(0, studentsToSpawn.Count)], new Vector2(spawnPointLeft1.position.x, yPosLeft), transform.rotation) as GameObject;
 
         //choose a random position in the adjusted node size for x & y
         float randomX = Random.Range(nodeRamdomizerMinBounds * _nodeSize, nodeRamdomizerMaxBounds * _nodeSize);
@@ -43,17 +43,23 @@ public class Spawner : MonoBehaviour {
         if (Random.Range(0, 0.99f) > 0.5f)
             randomY *= -1;
 
-        //give the target location to occupier 1, randomized in the node
-        user1.GetComponent<MoveTowards>().Target = new Vector2(_newNode.X * _nodeSize + randomX, _newNode.Y * _nodeSize + randomY);
+        MoveTowards moveTowardsUser1 = occupier1.GetComponent<MoveTowards>();
+        moveTowardsUser1.SetTargetToMove(new Vector2(_newNode.X * _nodeSize + randomX, _newNode.Y * _nodeSize + randomY));
+        moveTowardsUser1.SetTargetToRotate(new Vector2(_newNode.X * _nodeSize + randomX, _newNode.Y * _nodeSize + randomY));
 
         //spawn occupier 2 on the right
         float yPosRight = Random.Range(spawnPointRight1.position.y, spawnPointRight2.position.y);
-        GameObject user2 = Instantiate(teachterToSpawn[Random.Range(0, teachterToSpawn.Count - 1)], new Vector2(spawnPointRight1.position.x, yPosRight), transform.rotation) as GameObject;
+        GameObject occupier2 = Instantiate(teachterToSpawn[Random.Range(0, teachterToSpawn.Count)], new Vector2(spawnPointRight1.position.x, yPosRight), transform.rotation) as GameObject;
 
-        //give the target location to occupier 1, with its random coordinates mirrored
-        user2.GetComponent<MoveTowards>().Target = new Vector2(_newNode.X * _nodeSize + (randomX * -1), _newNode.Y * _nodeSize + (randomY * -1));
+        MoveTowards moveTowardsUser2 = occupier2.GetComponent<MoveTowards>();
+        moveTowardsUser2.SetTargetToMove(new Vector2(_newNode.X * _nodeSize + (randomX * -1), _newNode.Y * _nodeSize + (randomY * -1)));
+        moveTowardsUser2.SetTargetToRotate(new Vector2(_newNode.X * _nodeSize + (randomX * -1), _newNode.Y * _nodeSize + (randomY * -1)));
+
+        //instantiate the the target to rotate to, once the two occupiers get close
+        occupier1.GetComponent<ChangeRotatingTarget>().Instantiate(occupier2.transform);
+        occupier2.GetComponent<ChangeRotatingTarget>().Instantiate(occupier1.transform);
 
         //give the node its occupiers, so it can later send them away
-        _newNode.AddOccupiers(user1, user2);
+        _newNode.AddOccupiers(occupier1, occupier2);
     }
 }

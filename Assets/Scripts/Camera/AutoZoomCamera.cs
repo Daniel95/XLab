@@ -11,13 +11,9 @@ public class AutoZoomCamera : MonoBehaviour
 
     private Vector3 velocity;
 
-    private Camera camera;
-
     private Vector3 startPos;
 
     void Start() {
-        camera = GetComponent<Camera>();
-
         //position itself at the middle of the grid
         transform.position = startPos = new Vector3(gridController.MaxXLength / 2 * gridController.NodeSize, gridController.MaxYLength / 2 * gridController.NodeSize, transform.position.z);
     }

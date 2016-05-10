@@ -3,7 +3,6 @@ using System.Collections;
 
 public class ControlledBounce : MonoBehaviour {
 
-    [SerializeField]
     private Transform circle;
 
     [SerializeField]
@@ -19,9 +18,10 @@ public class ControlledBounce : MonoBehaviour {
 
     private Rigidbody rb;
 
-    void Start()
+    void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        circle = transform.parent;
         startTime = time;
     }
 

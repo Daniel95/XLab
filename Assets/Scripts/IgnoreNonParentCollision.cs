@@ -5,13 +5,10 @@ public class IgnoreNonParentCollision : MonoBehaviour
 {
     private Collider myCollider;
 
-    private Transform myParent;
-
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         myCollider = GetComponent<Collider>();
-        myParent = transform.parent;
     }
 
     void OnCollisionEnter(Collision _collision)

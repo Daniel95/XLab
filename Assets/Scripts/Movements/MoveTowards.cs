@@ -6,54 +6,102 @@ public class MoveTowards : MonoBehaviour
     [SerializeField]
     private float speed = 0.01f;
 
-    private float totalSpeed;
-
     [SerializeField]
     private float rotateSpeed = 0.1f;
 
-    //the current target we are moving towards
     [SerializeField]
-    private Vector2 currentTarget;
+    private float minDistance = 0.1f;
+
+    //the current target we are rotating to
+    private Vector2 currentTargetToMove;
 
     private Quaternion targetRotation;
 
-    void Start()
-    {
-        //the difference in vector to the target
-        Vector2 vectorToTarget = currentTarget - new Vector2(transform.position.x, transform.position.y);
-
-        //calculate the angle to our target
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
-
-        transform.rotation = Quaternion.Euler(angle, 90, 90);
+    private void Awake() {
+        transform.rotation = Quaternion.Euler(0, 270, 270);
     }
 
-    void FixedUpdate()
+    public void SetTargetToMove(Vector2 _newTarget)
+    {
+        StartCoroutine(MoveToTarget(_newTarget));
+    }
+
+    public void SetTargetToRotate(Vector2 _newTarget)
+    {
+        StartCoroutine(RotateToTarget(_newTarget));
+    }
+
+    public void SetTargetToUpdateRotating(Transform _newTarget, float _minTime)
+    {
+        StartCoroutine(UpdatingRotateToTarget(_newTarget, _minTime));
+    }
+
+    //move smooth to the target
+    IEnumerator MoveToTarget(Vector2 _target) {
+
+        currentTargetToMove = _target;
+
+        while (Vector2.Distance(transform.position, _target) > minDistance) {
+        //while (new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y)) != _target) {
+            //the difference in vector to the target
+            Vector2 vectorToTarget = _target - new Vector2(transform.position.x, transform.position.y);
+
+            //move towards the target pos
+            transform.position += new Vector3(vectorToTarget.x, vectorToTarget.y, 0) * speed;
+
+            yield return new WaitForFixedUpdate();
+        }
+
+    }
+
+    //rotate smooth to the target, the target position is not updated
+    IEnumerator RotateToTarget(Vector2 _target)
     {
         //the difference in vector to the target
-        Vector2 vectorToTarget = currentTarget - new Vector2(transform.position.x, transform.position.y);
+        Vector2 vectorToTarget = _target - new Vector2(transform.position.x, transform.position.y);
 
         //calculate the angle to our target
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - 90;
+        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 
         //use the angle to get the rotation to our target
-        //targetRotation = Quaternion.AngleAxis(angle, Vector3);
-        targetRotation = Quaternion.Euler(angle, 90, 90);
+        targetRotation = Quaternion.Euler(angle, 270, 270);
 
-        //move to the targetrotation over time
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed);
+        while (transform.rotation != targetRotation)
+        {
+            //move to the targetrotation over time
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed);
 
-        transform.position = Vector3.MoveTowards(transform.position, currentTarget, speed);
+            yield return new WaitForFixedUpdate();
+        }
+    }
+    
+    //rotate smooth to the target, and update the targets location.
+    //the loop must go on for a minimal time before it can end
+    IEnumerator UpdatingRotateToTarget(Transform _target, float _minTime)
+    {
+        //do while, so we first calc the target, and then check if we have reached the target or not.
+        //instead of directly comparing it to a value which might be old
+        while(transform.rotation != targetRotation || _minTime > 0)
+        {
+            //the difference in vector to the target
+            Vector2 vectorToTarget = (Vector2)_target.position - new Vector2(transform.position.x, transform.position.y);
+
+            //calculate the angle to our target
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
+
+            //use the angle to get the rotation to our target
+            targetRotation = Quaternion.Euler(angle, 270, 270);
+
+            //move to the targetrotation over time
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed);
+
+            _minTime--;
+
+            yield return new WaitForFixedUpdate();
+        }
     }
 
     public void MoveAway() {
         Destroy(gameObject);
-    }
-
-    // van buitenaf kun je de huidige target uitlezen
-    public Vector2 Target
-    {
-        get { return currentTarget; }
-        set { currentTarget = value; }
     }
 }
