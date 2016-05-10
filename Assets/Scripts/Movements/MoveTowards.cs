@@ -84,9 +84,7 @@ public class MoveTowards : MonoBehaviour
     //the loop must go on for a minimal time before it can end
     IEnumerator UpdatingRotateToTarget(Transform _target, float _minTime)
     {
-        //do while, so we first calc the target, and then check if we have reached the target or not.
-        //instead of directly comparing it to a value which might be old
-        while(transform.rotation != targetRotation || _minTime > 0)
+        while(_minTime > 0 || transform.rotation != targetRotation)
         {
             //the difference in vector to the target
             Vector2 vectorToTarget = (Vector2)_target.position - new Vector2(transform.position.x, transform.position.y);

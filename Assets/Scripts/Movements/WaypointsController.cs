@@ -10,9 +10,12 @@ public class WaypointsController : MonoBehaviour
 
     private GoToPointSmooth goToPointSmooth;
 
+    private Vector2 localStartPos;
+
     void Awake()
     {
         goToPointSmooth = GetComponent<GoToPointSmooth>();
+        transform.localPosition = localStartPos;
     }
 
     void OnEnable()
@@ -38,6 +41,8 @@ public class WaypointsController : MonoBehaviour
     }
 
     public void StartPatrolling() {
+        transform.localPosition = localStartPos;
+
         goToPointSmooth.Point = waypoints[waypointIndex];
         goToPointSmooth.StartSeeking();
     }

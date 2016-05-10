@@ -15,8 +15,8 @@ public class ConnectionsController : MonoBehaviour {
     private int oldValue = 0;
 
     void Start() {
-        //StartCoroutine(RandomIncrementOrDecrement());
-        gridController.FillNode();
+        StartCoroutine(RandomIncrementOrDecrement());
+        //gridController.FillNode();
     }
 
     void OnEnable()
@@ -49,7 +49,7 @@ public class ConnectionsController : MonoBehaviour {
             }
         }
     }
-    /*
+    
     IEnumerator RandomIncrementOrDecrement()
     {
         int difference = Random.Range(-1, 2);
@@ -77,7 +77,7 @@ public class ConnectionsController : MonoBehaviour {
         yield return new WaitForSeconds(1f);
 
         StartCoroutine(RandomIncrementOrDecrement());
-    }*/
+    }
 
     void SpawnOccupiers(Node _node, float _nodeSize) {
         spawner.Spawn(_node, _nodeSize);
