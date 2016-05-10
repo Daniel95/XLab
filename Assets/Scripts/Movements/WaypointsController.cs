@@ -15,7 +15,7 @@ public class WaypointsController : MonoBehaviour
     void Awake()
     {
         goToPointSmooth = GetComponent<GoToPointSmooth>();
-        transform.localPosition = localStartPos;
+        localStartPos = transform.localPosition;
     }
 
     void OnEnable()
