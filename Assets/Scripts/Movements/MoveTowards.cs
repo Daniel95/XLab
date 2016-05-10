@@ -10,13 +10,13 @@ public class MoveTowards : MonoBehaviour
     public DoneRotatingMethods FinishedRotating;
 
     [SerializeField]
-    private float speed = 0.01f;
+    private float speed = 0.008f;
 
     [SerializeField]
-    private float rotateSpeed = 0.1f;
+    private float rotateSpeed = 0.05f;
 
     [SerializeField]
-    private float minDistance = 0.1f;
+    private float minDistance = 0.05f;
 
     //the current target we are rotating to
     private Vector2 currentTargetToMove;

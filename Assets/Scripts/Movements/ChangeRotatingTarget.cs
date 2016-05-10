@@ -4,10 +4,10 @@ using System.Collections;
 public class ChangeRotatingTarget : MonoBehaviour {
 
     [SerializeField]
-    private float minDistance = 5;
+    private float minDistance = 4;
 
     [SerializeField]
-    private int minRotateTime = 200;
+    private int minRotateTime = 135;
 
     private Transform newTarget;
 
