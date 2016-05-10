@@ -15,8 +15,10 @@ public class IgnoreNonParentCollision : MonoBehaviour
     {
         //check if our collision is from our parent, if not, ignore the collision
         if (_collision.transform != transform.parent)
-        {
             Physics.IgnoreCollision(myCollider, _collision.collider);
-        }
+    }
+
+    public void SetKinematic(bool _isKinematic) {
+        GetComponent<Rigidbody>().isKinematic = _isKinematic;
     }
 }

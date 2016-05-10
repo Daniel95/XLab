@@ -11,6 +11,22 @@ public class ChangeRotatingTarget : MonoBehaviour {
 
     private Transform newTarget;
 
+    private MoveTowards moveTowards;
+
+    void Awake() {
+        moveTowards = GetComponent<MoveTowards>();
+    }
+
+    void OnEnable()
+    {
+        moveTowards.FinishedRotating += StartConnectionEffect;
+    }
+
+    void OnDisable()
+    {
+        moveTowards.FinishedRotating -= StartConnectionEffect;
+    }
+
     public void Instantiate(Transform _newTarget) {
         newTarget = _newTarget;
         StartCoroutine(CheckDistance());
@@ -24,6 +40,11 @@ public class ChangeRotatingTarget : MonoBehaviour {
 
         //rotate to the new target once we are close enough, and update its position
         GetComponent<MoveTowards>().SetTargetToUpdateRotating(newTarget, minRotateTime);
+    }
+
+    private void StartConnectionEffect()
+    {
+        GetComponent<ConnectionEffect>().StartEffect(newTarget.position);
     }
 
     public Transform NewTarget

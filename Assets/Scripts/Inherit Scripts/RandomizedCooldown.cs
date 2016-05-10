@@ -11,6 +11,8 @@ public class RandomizedCooldown : MonoBehaviour {
     [SerializeField]
     private float cooldownRandomizer = 0.3f;
 
+    private bool executing = true;
+
     void Start() {
         normalCooldownStartValue = cooldown;
     }
@@ -19,11 +21,17 @@ public class RandomizedCooldown : MonoBehaviour {
         cooldown--;
         if (cooldown < 0) {
             cooldown = normalCooldownStartValue + Random.Range(-cooldownRandomizer, cooldownRandomizer);
-            Execute();
+            if(executing)
+                Execute();
         }
     }
 
     virtual protected void Execute() {
 
+    }
+
+    public bool Executing
+    {
+        set { executing = value; }
     }
 }

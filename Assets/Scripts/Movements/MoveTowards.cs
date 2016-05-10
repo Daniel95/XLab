@@ -3,6 +3,12 @@ using System.Collections;
 
 public class MoveTowards : MonoBehaviour
 {
+    //delegate type
+    public delegate void DoneRotatingMethods();
+
+    //delegate instance
+    public DoneRotatingMethods FinishedRotating;
+
     [SerializeField]
     private float speed = 0.01f;
 
@@ -51,7 +57,6 @@ public class MoveTowards : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
-
     }
 
     //rotate smooth to the target, the target position is not updated
@@ -99,6 +104,9 @@ public class MoveTowards : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
+
+        if (FinishedRotating != null)
+            FinishedRotating();
     }
 
     public void MoveAway() {

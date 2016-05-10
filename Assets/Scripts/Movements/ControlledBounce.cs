@@ -18,6 +18,8 @@ public class ControlledBounce : MonoBehaviour {
 
     private Rigidbody rb;
 
+    private bool controlBounce = true;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -26,7 +28,8 @@ public class ControlledBounce : MonoBehaviour {
     }
 
     void OnCollisionEnter(Collision collision) {
-        StartCoroutine(ApplyGravity());
+        if(controlBounce)
+            StartCoroutine(ApplyGravity());
     }
 
     IEnumerator ApplyGravity()
@@ -47,5 +50,9 @@ public class ControlledBounce : MonoBehaviour {
             
             yield return new WaitForFixedUpdate();
         }
+    }
+
+    public bool ControlBounce {
+        set { controlBounce = value; }
     }
 }
