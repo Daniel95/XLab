@@ -149,7 +149,7 @@ public class GridController : MonoBehaviour {
         return Mathf.FloorToInt(Mathf.FloorToInt(Mathf.Sqrt(_occupiedNodesAmount)) / 2);
     }
 
-    public void EmptyNode()
+    public void EmptyNode(int _nodeToRemove)
     {
         List<Node> occupiedNodes = new List<Node>();
 

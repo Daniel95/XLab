@@ -12,22 +12,31 @@ public class ConnectionsController : MonoBehaviour {
     [SerializeField]
     private Spawner spawner;
 
+    [SerializeField]
+    private CheckUniqueConnections checkUniqueConnections;
+
     private int oldValue = 0;
 
     void Start() {
-        StartCoroutine(RandomIncrementOrDecrement());
+        //StartCoroutine(RandomIncrementOrDecrement());
         //gridController.FillNode();
     }
 
     void OnEnable()
     {
-        loadData.FinishedLoading += ControlGridFunctions;
+        loadData.FinishedLoadingConnections += ControlGridFunctions;
+        loadData.FinishedLoadingBlindDates += ControlGridFunctions;
+        checkUniqueConnections.AddNode += gridController.FillNode;
+        checkUniqueConnections.RemoveNode += gridController.EmptyNode;
         gridController.ChosenNode += SpawnOccupiers;
     }
 
     void OnDisable()
     {
-        loadData.FinishedLoading -= ControlGridFunctions;
+        loadData.FinishedLoadingConnections -= ControlGridFunctions;
+        loadData.FinishedLoadingBlindDates += ControlGridFunctions;
+        checkUniqueConnections.AddNode -= gridController.FillNode;
+        checkUniqueConnections.RemoveNode -= gridController.EmptyNode;
         gridController.ChosenNode -= SpawnOccupiers;
     }
      
@@ -38,7 +47,7 @@ public class ConnectionsController : MonoBehaviour {
         if (difference < 0)
         {
             for (int i = 0; i < Mathf.Abs(difference); i++) {
-                gridController.EmptyNode();
+                gridController.EmptyNode(0);
             }
         }
         else if (difference > 0)
@@ -49,7 +58,12 @@ public class ConnectionsController : MonoBehaviour {
             }
         }
     }
-    
+
+    void ControlGridFunctions(string _unsplitData)
+    {
+        checkUniqueConnections.UpdateConnections(_unsplitData);
+    }
+
     IEnumerator RandomIncrementOrDecrement()
     {
         int difference = Random.Range(-1, 2);
@@ -63,7 +77,7 @@ public class ConnectionsController : MonoBehaviour {
         {
             for (int i = 0; i < Mathf.Abs(difference); i++)
             {
-                gridController.EmptyNode();
+                gridController.EmptyNode(0);
             }
         }
         else if (difference > 0)

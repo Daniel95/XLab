@@ -18,9 +18,6 @@ public class MoveTowards : MonoBehaviour
     [SerializeField]
     private float minDistance = 0.05f;
 
-    //the current target we are rotating to
-    private Vector2 currentTargetToMove;
-
     private Quaternion targetRotation;
 
     private void Awake() {
@@ -45,10 +42,7 @@ public class MoveTowards : MonoBehaviour
     //move smooth to the target
     IEnumerator MoveToTarget(Vector2 _target) {
 
-        currentTargetToMove = _target;
-
         while (Vector2.Distance(transform.position, _target) > minDistance) {
-        //while (new Vector2(Mathf.Round(transform.position.x), Mathf.Round(transform.position.y)) != _target) {
             //the difference in vector to the target
             Vector2 vectorToTarget = _target - new Vector2(transform.position.x, transform.position.y);
 
