@@ -55,7 +55,6 @@ public class CheckUniqueConnections : MonoBehaviour {
         for (int a = activeConnections.Count - 1; a >= 0; a--)
         {
             if (!stillExistingConnections[a]) {
-                print("remove connection");
                 activeConnections.Remove(activeConnections[a]);
                 RemoveNode(a);
             }

@@ -4,13 +4,7 @@ using System.Collections;
 public class LoadData : Cooldown {
 
     //delegate type
-    public delegate void LoadedBlindDatesData(string stringVar);
-
-    //delegate instance
-    public LoadedBlindDatesData FinishedLoadingBlindDates;
-
-    //delegate type
-    public delegate void LoadedConnectionsMethods(string stringVar);
+    public delegate void LoadedConnectionsMethods(string stringVar, bool isBlindDate);
 
     //delegate instance
     public LoadedConnectionsMethods FinishedLoadingConnections;
@@ -45,9 +39,7 @@ public class LoadData : Cooldown {
     {
         yield return _www;
 
-        if (_isBlindDate && FinishedLoadingConnections != null)
-            FinishedLoadingConnections(_www.text);
-        else if (!_isBlindDate && FinishedLoadingBlindDates != null)
-            FinishedLoadingBlindDates(_www.text);
+        if (FinishedLoadingConnections != null)
+            FinishedLoadingConnections(_www.text, _isBlindDate);
     }
 }

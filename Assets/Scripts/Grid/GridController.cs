@@ -170,27 +170,14 @@ public class GridController : MonoBehaviour {
         //empty a random node of occupiednodes
         if (occupiedNodes.Count != 0)
         {
-            print("Node to remove is = " + _nodeToRemove);
             foreach (Node _node in occupiedNodes) {
-                print(_node.NodeNumber);
-
                 if (_node.NodeNumber == _nodeToRemove) {
-                    print("remove Node");
                     _node.RemoveOccupiers();
                     _node.Occupied = false;
                     amountNodesOccupied--;
                     break;
                 }
             }
-
-
-            /*
-            Node nodeToEmpty = occupiedNodes[Random.Range(0, occupiedNodes.Count)];
-            nodeToEmpty.Occupied = false;
-            //nodeToEmpty.TestObj.SetActive(false);
-            nodeToEmpty.RemoveOccupiers();
-
-            amountNodesOccupied--;*/
         }
     }
 

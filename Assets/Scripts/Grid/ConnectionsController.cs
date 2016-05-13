@@ -17,14 +17,9 @@ public class ConnectionsController : MonoBehaviour {
 
     private int oldValue = 0;
 
-    void Start() {
-        //StartCoroutine(RandomIncrementOrDecrement());
-    }
-
     void OnEnable()
     {
         loadData.FinishedLoadingConnections += ControlGridFunctions;
-        loadData.FinishedLoadingBlindDates += ControlGridFunctions;
         checkUniqueConnections.AddNode += gridController.FillNode;
         checkUniqueConnections.RemoveNode += gridController.EmptyNode;
         gridController.ChosenNode += SpawnOccupiers;
@@ -33,12 +28,12 @@ public class ConnectionsController : MonoBehaviour {
     void OnDisable()
     {
         loadData.FinishedLoadingConnections -= ControlGridFunctions;
-        loadData.FinishedLoadingBlindDates += ControlGridFunctions;
         checkUniqueConnections.AddNode -= gridController.FillNode;
         checkUniqueConnections.RemoveNode -= gridController.EmptyNode;
         gridController.ChosenNode -= SpawnOccupiers;
     }
      
+    /*
     void ControlGridFunctions(int _newValue) {
         //get the difference
         var difference = oldValue - _newValue;
@@ -56,13 +51,14 @@ public class ConnectionsController : MonoBehaviour {
                 gridController.FillNode();
             }
         }
-    }
+    }*/
 
-    void ControlGridFunctions(string _unsplitData)
+    void ControlGridFunctions(string _unsplitData, bool _isBlindDate)
     {
         checkUniqueConnections.UpdateConnections(_unsplitData);
     }
 
+    /*
     IEnumerator RandomIncrementOrDecrement()
     {
         int difference = Random.Range(-1, 2);
@@ -90,7 +86,7 @@ public class ConnectionsController : MonoBehaviour {
         yield return new WaitForSeconds(1.5f);
 
         StartCoroutine(RandomIncrementOrDecrement());
-    }
+    }*/
 
     void SpawnOccupiers(Node _node, float _nodeSize) {
         spawner.Spawn(_node, _nodeSize);

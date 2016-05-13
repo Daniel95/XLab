@@ -3,6 +3,12 @@ using System.Collections;
 
 public class ChangeRotatingTarget : MonoBehaviour {
 
+    //delegate type
+    public delegate void SlowSwimMethod();
+
+    //delegate instance
+    public SlowSwimMethod SlowSwim;
+
     [SerializeField]
     private float minDistance = 4;
 
@@ -37,6 +43,9 @@ public class ChangeRotatingTarget : MonoBehaviour {
         while (Vector2.Distance(transform.position, newTarget.position) > minDistance) {
             yield return new WaitForFixedUpdate();
         }
+
+        if (SlowSwim != null)
+            SlowSwim();
 
         //rotate to the new target once we are close enough, and update its position
         GetComponent<MoveTowards>().SetTargetToUpdateRotating(newTarget, minRotateTime);
