@@ -4,13 +4,13 @@ using System.Collections.Generic;
 public class CheckUniqueConnections : MonoBehaviour {
 
     //delegate type
-    public delegate void AddNodeMethod();
-
-    //delegate type
-    public delegate void RemoveNodeMethod(int _nodeLocation);
+    public delegate void AddNodeMethod(int _nodeNumber);
 
     //delegate instance
     public AddNodeMethod AddNode;
+
+    //delegate type
+    public delegate void RemoveNodeMethod(int _nodeNumber);
 
     //delegate instance
     public RemoveNodeMethod RemoveNode;
@@ -18,7 +18,6 @@ public class CheckUniqueConnections : MonoBehaviour {
     private List<int> activeConnections = new List<int>();
 
     private bool[] stillExistingConnections;
-
 
     private List<int> connectionsToAdd = new List<int>();
 
@@ -56,14 +55,17 @@ public class CheckUniqueConnections : MonoBehaviour {
         {
             if (!stillExistingConnections[a]) {
                 activeConnections.Remove(activeConnections[a]);
-                RemoveNode(a);
+                RemoveNode(activeConnections[a]);
+                print(a);
+                print("node to remove = " + activeConnections[a] + " a = " + a);
             }
         }
 
         //add the connections we marked to be new
         for (int i = 0; i < connectionsToAdd.Count; i++) {
             activeConnections.Add(connectionsToAdd[i]);
-            AddNode();
+            AddNode(connectionsToAdd[i]);
+            print("node to add = " + connectionsToAdd[i]);
         }
 
         //clear the connectionsToAdd list

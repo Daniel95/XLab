@@ -32,32 +32,17 @@ public class ConnectionsController : MonoBehaviour {
         checkUniqueConnections.RemoveNode -= gridController.EmptyNode;
         gridController.ChosenNode -= SpawnOccupiers;
     }
-     
-    /*
-    void ControlGridFunctions(int _newValue) {
-        //get the difference
-        var difference = oldValue - _newValue;
-
-        if (difference < 0)
-        {
-            for (int i = 0; i < Mathf.Abs(difference); i++) {
-                gridController.EmptyNode(0);
-            }
-        }
-        else if (difference > 0)
-        {
-            for (int i = 0; i < difference; i++)
-            {
-                gridController.FillNode();
-            }
-        }
-    }*/
 
     void ControlGridFunctions(string _unsplitData, bool _isBlindDate)
     {
         checkUniqueConnections.UpdateConnections(_unsplitData);
     }
 
+    void SpawnOccupiers(Node _node, float _nodeSize) {
+        spawner.Spawn(_node, _nodeSize);
+    }
+
+    //old functions to test the simulation
     /*
     IEnumerator RandomIncrementOrDecrement()
     {
@@ -88,7 +73,23 @@ public class ConnectionsController : MonoBehaviour {
         StartCoroutine(RandomIncrementOrDecrement());
     }*/
 
-    void SpawnOccupiers(Node _node, float _nodeSize) {
-        spawner.Spawn(_node, _nodeSize);
-    }
+    /*
+    void ControlGridFunctions(int _newValue) {
+        //get the difference
+        var difference = oldValue - _newValue;
+
+        if (difference < 0)
+        {
+            for (int i = 0; i < Mathf.Abs(difference); i++) {
+                gridController.EmptyNode(0);
+            }
+        }
+        else if (difference > 0)
+        {
+            for (int i = 0; i < difference; i++)
+            {
+                gridController.FillNode();
+            }
+        }
+    }*/
 }

@@ -3,9 +3,9 @@ using System.Collections;
 
 public class Node {
 
-    private int x;
+    private float x;
 
-    private int y;
+    private float y;
 
     private int nodeNumber;
 
@@ -16,19 +16,19 @@ public class Node {
     private GameObject occupier1;
     private GameObject occupier2;
 
-    public Node(int _x, int _y, GameObject _testObj)
+    public Node(float _x, float _y, GameObject _testObj)
     {
         testObj = _testObj;
         x = _x;
         y = _y;
     }
 
-    public int X
+    public float X
     {
         get { return x; }
     }
 
-    public int Y
+    public float Y
     {
         get { return y; }
     }

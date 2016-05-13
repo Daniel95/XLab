@@ -18,14 +18,15 @@ public class GridController : MonoBehaviour {
     [SerializeField]
     private int maxYLength = 10;
 
+    [SerializeField]
+    private float xOffSet = 3;
+
     private int occupatedNodesRowsRadius;
 
     [SerializeField]
     private float nodeSize = 1;
 
     private Node[,] nodes;
-
-    private int amountNodesOccupied;
 
     void Awake()
     {
@@ -34,14 +35,14 @@ public class GridController : MonoBehaviour {
         for (int x = 0; x < maxXLength; x++) {
             for (int y = 0; y < maxYLength; y++) {
                 GameObject obj = Instantiate(testObj, new Vector3(0,0), transform.rotation) as GameObject;
-                nodes[x, y] = new Node(x, y, obj);
-                nodes[x, y].TestObj.transform.position = new Vector2(nodes[x, y].X * nodeSize, nodes[x, y].Y * nodeSize);
+                nodes[x, y] = new Node(x + xOffSet, y , obj);
+                nodes[x, y].TestObj.transform.position = new Vector2(nodes[x, y].X * nodeSize + xOffSet, nodes[x, y].Y * nodeSize);
                 nodes[x, y].TestObj.SetActive(false);
             }
         }
     }
 
-    public void FillNode()
+    public void FillNode(int _nodeNumber)
     {
         //our starting position
         int xPosToChange = maxXLength / 2;
@@ -94,8 +95,6 @@ public class GridController : MonoBehaviour {
             }
         }
 
-        amountNodesOccupied++;
-
         //check how many nodes are occupied
         int occupiedNodeIndex = 0;
 
@@ -114,7 +113,7 @@ public class GridController : MonoBehaviour {
         {
             //nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
             nodes[xPosToChange, yPosToChange].Occupied = true;
-            nodes[xPosToChange, yPosToChange].NodeNumber = amountNodesOccupied;
+            nodes[xPosToChange, yPosToChange].NodeNumber = _nodeNumber;
 
             if (ChosenNode != null)
                 ChosenNode(nodes[xPosToChange, yPosToChange], nodeSize);
@@ -153,7 +152,7 @@ public class GridController : MonoBehaviour {
         return Mathf.FloorToInt(Mathf.FloorToInt(Mathf.Sqrt(_occupiedNodesAmount)) / 2);
     }
 
-    public void EmptyNode(int _nodeToRemove)
+    public void EmptyNode(int _nodeNumber)
     {
         List<Node> occupiedNodes = new List<Node>();
 
@@ -171,10 +170,10 @@ public class GridController : MonoBehaviour {
         if (occupiedNodes.Count != 0)
         {
             foreach (Node _node in occupiedNodes) {
-                if (_node.NodeNumber == _nodeToRemove) {
+                if (_node.NodeNumber == _nodeNumber) {
                     _node.RemoveOccupiers();
                     _node.Occupied = false;
-                    amountNodesOccupied--;
+                    print("remove node: " + _nodeNumber);
                     break;
                 }
             }

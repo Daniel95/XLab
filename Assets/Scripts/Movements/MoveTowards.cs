@@ -18,9 +18,17 @@ public class MoveTowards : MonoBehaviour
     [SerializeField]
     private float minDistance = 0.05f;
 
+    [SerializeField]
+    private bool correctRotation = true;
+
+    private Vector3 correctedRotation = new Vector3(0, 0, 0);
+
     private Quaternion targetRotation;
 
     private void Awake() {
+        if (correctRotation)
+            correctedRotation = new Vector3(0, 270, 270);
+
         transform.rotation = Quaternion.Euler(0, 270, 270);
     }
 
@@ -63,7 +71,7 @@ public class MoveTowards : MonoBehaviour
         float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 
         //use the angle to get the rotation to our target
-        targetRotation = Quaternion.Euler(angle, 270, 270);
+        targetRotation = Quaternion.Euler(angle, correctedRotation.y, correctedRotation.z);
 
         while (transform.rotation != targetRotation)
         {
@@ -87,7 +95,7 @@ public class MoveTowards : MonoBehaviour
             float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
 
             //use the angle to get the rotation to our target
-            targetRotation = Quaternion.Euler(angle, 270, 270);
+            targetRotation = Quaternion.Euler(angle, correctedRotation.y, correctedRotation.z);
 
             //move to the targetrotation over time
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotateSpeed);
