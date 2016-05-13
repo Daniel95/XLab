@@ -19,17 +19,12 @@ public class MoveTowards : MonoBehaviour
     private float minDistance = 0.05f;
 
     [SerializeField]
-    private bool correctRotation = true;
-
-    private Vector3 correctedRotation = new Vector3(0, 0, 0);
+    private Vector3 correctedRotation = new Vector3(0, 270, 270);
 
     private Quaternion targetRotation;
 
     private void Awake() {
-        if (correctRotation)
-            correctedRotation = new Vector3(0, 270, 270);
-
-        transform.rotation = Quaternion.Euler(0, 270, 270);
+        transform.rotation = Quaternion.Euler(correctedRotation.x, correctedRotation.y, correctedRotation.z);
     }
 
     public void SetTargetToMove(Vector2 _newTarget)
