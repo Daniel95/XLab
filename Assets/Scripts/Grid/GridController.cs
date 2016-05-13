@@ -25,6 +25,8 @@ public class GridController : MonoBehaviour {
 
     private Node[,] nodes;
 
+    private int amountNodesOccupied;
+
     void Awake()
     {
         //make the nodes
@@ -92,6 +94,7 @@ public class GridController : MonoBehaviour {
             }
         }
 
+        amountNodesOccupied++;
 
         //check how many nodes are occupied
         int occupiedNodeIndex = 0;
@@ -111,6 +114,7 @@ public class GridController : MonoBehaviour {
         {
             //nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
             nodes[xPosToChange, yPosToChange].Occupied = true;
+            nodes[xPosToChange, yPosToChange].NodeNumber = amountNodesOccupied;
 
             if (ChosenNode != null)
                 ChosenNode(nodes[xPosToChange, yPosToChange], nodeSize);
@@ -154,9 +158,9 @@ public class GridController : MonoBehaviour {
         List<Node> occupiedNodes = new List<Node>();
 
         //add all occupied nodes to a list
-        foreach (Node node in nodes) {
-            if (node.Occupied) {
-                occupiedNodes.Add(node);
+        foreach (Node _node in nodes) {
+            if (_node.Occupied) {
+                occupiedNodes.Add(_node);
             }
         }
 
@@ -166,10 +170,27 @@ public class GridController : MonoBehaviour {
         //empty a random node of occupiednodes
         if (occupiedNodes.Count != 0)
         {
+            print("Node to remove is = " + _nodeToRemove);
+            foreach (Node _node in occupiedNodes) {
+                print(_node.NodeNumber);
+
+                if (_node.NodeNumber == _nodeToRemove) {
+                    print("remove Node");
+                    _node.RemoveOccupiers();
+                    _node.Occupied = false;
+                    amountNodesOccupied--;
+                    break;
+                }
+            }
+
+
+            /*
             Node nodeToEmpty = occupiedNodes[Random.Range(0, occupiedNodes.Count)];
             nodeToEmpty.Occupied = false;
             //nodeToEmpty.TestObj.SetActive(false);
             nodeToEmpty.RemoveOccupiers();
+
+            amountNodesOccupied--;*/
         }
     }
 

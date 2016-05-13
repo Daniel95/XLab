@@ -7,6 +7,8 @@ public class Node {
 
     private int y;
 
+    private int nodeNumber;
+
     private bool occupied;
 
     private GameObject testObj;
@@ -40,6 +42,11 @@ public class Node {
     public GameObject TestObj {
         set { testObj = value; }
         get { return testObj; }
+    }
+
+    public int NodeNumber {
+        set { nodeNumber = value; }
+        get { return nodeNumber; }
     }
 
     public void AddOccupiers(GameObject _occupier1, GameObject _occupier2) {

@@ -47,7 +47,6 @@ public class CheckUniqueConnections : MonoBehaviour {
             //this is the connections that exists, but not yet in the list
             if (stillExistingConnections.Length == 0 || !stillExistingConnections[activeConnectionsIndex])
             {
-                //print("connection doesnt yet exist, stillexistingconnection.lengt = " + stillExistingConnections.Length + ". this is data: " + activeConnectionsIndex);
                 connectionsToAdd.Add(int.Parse(splittedData[d]));
             } 
         }
