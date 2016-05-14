@@ -23,7 +23,8 @@ public class LoadData : Cooldown {
     protected override void Execute()
     {
         base.Execute();
-        LoadValue(blindDatesLink, true);
+        if(!loadedBlindDates)
+            LoadValue(blindDatesLink, true);
     }
 
     public void LoadValue(string _link, bool _isBlindDate)
@@ -73,5 +74,8 @@ public class LoadData : Cooldown {
     {
         if (FinishedLoadingConnections != null)
             FinishedLoadingConnections(results);
+
+        loadedConnections = loadedBlindDates = false;
+        results = "";
     }
 }
