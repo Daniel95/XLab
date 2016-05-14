@@ -173,7 +173,7 @@ public class GridController : MonoBehaviour {
                 if (_node.NodeNumber == _nodeNumber) {
                     _node.RemoveOccupiers();
                     _node.Occupied = false;
-                    print("remove node: " + _nodeNumber);
+                    print("node " + _nodeNumber + " got removed");
                     break;
                 }
             }

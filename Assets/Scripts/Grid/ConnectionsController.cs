@@ -33,7 +33,7 @@ public class ConnectionsController : MonoBehaviour {
         gridController.ChosenNode -= SpawnOccupiers;
     }
 
-    void ControlGridFunctions(string _unsplitData, bool _isBlindDate)
+    void ControlGridFunctions(string _unsplitData)
     {
         checkUniqueConnections.UpdateConnections(_unsplitData);
     }

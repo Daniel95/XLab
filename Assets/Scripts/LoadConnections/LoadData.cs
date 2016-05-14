@@ -4,7 +4,7 @@ using System.Collections;
 public class LoadData : Cooldown {
 
     //delegate type
-    public delegate void LoadedConnectionsMethods(string stringVar, bool isBlindDate);
+    public delegate void LoadedConnectionsMethods(string stringVar);
 
     //delegate instance
     public LoadedConnectionsMethods FinishedLoadingConnections;
@@ -12,17 +12,31 @@ public class LoadData : Cooldown {
     [SerializeField]
     private int connectionsTimeExclusion = 10;
 
+    private string blindDatesLink = "http://18003.hosts.ma-cloud.nl/light/activeBlindDates.php";
+
+    private string connectifConnectionsLink = "http://connectif.nl/index.php?request=json&typeRequest=updateUserReadedMessage&time=";
+
+    private bool loadedBlindDates, loadedConnections;
+
+    private string results;
+
     protected override void Execute()
     {
         base.Execute();
-        //LoadValue("http://connectif.nl/index.php?request=json&typeRequest=updateUserReadedMessage&time=" + connectionsTimeExclusion, true);
-        //LoadValue("http://18003.hosts.ma-cloud.nl/light/activeBlindDates.php", false);
-
-        LoadValue("http://14411.hosts.ma-cloud.nl/xlab/phptestscript.php", false);
+        LoadValue(blindDatesLink, true);
     }
 
     public void LoadValue(string _link, bool _isBlindDate)
     {
+        if (_isBlindDate)
+        {
+            UnityEditor.EditorSettings.webSecurityEmulationHostUrl = "http://18003.hosts.ma-cloud.nl/";
+        }
+        else
+        {
+            UnityEditor.EditorSettings.webSecurityEmulationHostUrl = "http://connectif.nl/";
+        }
+
         //the locations of the php file
         string url = _link;
 
@@ -39,7 +53,27 @@ public class LoadData : Cooldown {
     {
         yield return _www;
 
+        if (_isBlindDate)
+        {
+            loadedBlindDates = true;
+            LoadValue(connectifConnectionsLink + connectionsTimeExclusion, false);
+            results += _www.text;
+        }
+        else
+        {
+            loadedConnections = true;
+            results += "-" + _www.text;
+        }
+
+        if (loadedBlindDates && loadedConnections)
+            SendInfo();
+    }
+
+    void SendInfo()
+    {
+        print("send result : " + results);
+
         if (FinishedLoadingConnections != null)
-            FinishedLoadingConnections(_www.text, _isBlindDate);
+            FinishedLoadingConnections(results);
     }
 }
