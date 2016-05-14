@@ -18,4 +18,12 @@ public class ChangeAnimation : AnimationBase {
 
         animator.Play("swim");
     }
+
+    public override void SwimAway()
+    {
+        base.SwimAway();
+        //play here the animation when the connection has ended, and the occupier swims away
+
+
+    }
 }

@@ -9,6 +9,14 @@ public class MoveTowards : MonoBehaviour
     //delegate instance
     public DoneRotatingMethods FinishedRotating;
 
+    //delegate type
+    public delegate void ConnectionEndedMethod();
+
+    //delegate instance
+    public ConnectionEndedMethod FinishedConnection;
+
+    public static float actualMoveSpeed;
+
     [SerializeField]
     private float speed = 0.008f;
 
@@ -20,9 +28,11 @@ public class MoveTowards : MonoBehaviour
 
     private Quaternion targetRotation;
 
+    private Vector2 exitConnectionGotoPoint;
+
     public void SetTargetToMove(Vector2 _newTarget)
     {
-        StartCoroutine(MoveToTarget(_newTarget));
+        StartCoroutine(MoveToTarget(_newTarget, false));
     }
 
     public void SetTargetToRotate(Vector2 _newTarget)
@@ -36,17 +46,22 @@ public class MoveTowards : MonoBehaviour
     }
 
     //move smooth to the target
-    IEnumerator MoveToTarget(Vector2 _target) {
+    IEnumerator MoveToTarget(Vector2 _target, bool _destructSelfOnExit) {
 
         while (Vector2.Distance(transform.position, _target) > minDistance) {
             //the difference in vector to the target
             Vector2 vectorToTarget = _target - new Vector2(transform.position.x, transform.position.y);
+
+            actualMoveSpeed = Mathf.Abs(vectorToTarget.x) + Mathf.Abs(vectorToTarget.y);
 
             //move towards the target pos
             transform.position += new Vector3(vectorToTarget.x, vectorToTarget.y, 0) * speed;
 
             yield return new WaitForFixedUpdate();
         }
+
+        if (_destructSelfOnExit)
+            Destroy(gameObject);
     }
 
     //rotate smooth to the target, the target position is not updated
@@ -97,6 +112,8 @@ public class MoveTowards : MonoBehaviour
     }
 
     public void MoveAway() {
-        Destroy(gameObject);
+        StartCoroutine(MoveToTarget(new Vector2(-1000, 1000), true));
+        if (FinishedConnection != null)
+            FinishedConnection();
     }
 }

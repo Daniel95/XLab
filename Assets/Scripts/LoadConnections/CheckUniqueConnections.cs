@@ -75,7 +75,5 @@ public class CheckUniqueConnections : MonoBehaviour {
 
         //clear the connectionsToAdd list
         connectionsToAdd.Clear();
-
-        print("---END---");
     }
 }
