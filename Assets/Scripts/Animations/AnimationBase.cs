@@ -4,6 +4,9 @@ using System.Collections;
 public class AnimationBase : MonoBehaviour {
 
     [SerializeField]
+    protected Animator animator;
+
+    [SerializeField]
     private bool adjustAnimSpeedToActualSpeed = true;
 
     [SerializeField]
@@ -13,12 +16,9 @@ public class AnimationBase : MonoBehaviour {
 
     private MoveTowards moveTowards;
 
-    protected Animator animator;
-
     protected bool swimming = true;
 
     private void Awake() {
-        animator = GetComponent<Animator>();
         changeRotatingTarget = GetComponent<ChangeRotatingTarget>();
         moveTowards = GetComponent<MoveTowards>();
 

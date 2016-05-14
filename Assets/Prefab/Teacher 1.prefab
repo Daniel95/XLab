@@ -43,6 +43,7 @@ GameObject:
   - 114: {fileID: 11422706}
   - 114: {fileID: 11457832}
   - 114: {fileID: 11498304}
+  - 114: {fileID: 11495270}
   m_Layer: 0
   m_Name: Teacher 1
   m_TagString: Untagged
@@ -78,7 +79,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 414282}
   - 95: {fileID: 9590796}
-  - 114: {fileID: 11457368}
   m_Layer: 0
   m_Name: teacher1animated
   m_TagString: Untagged
@@ -676,17 +676,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82e47c8bd0c058643b8469218367c118, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11457368
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 151028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf89095b4391824a89b57ef53661912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11457832
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -700,6 +689,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 4
   minRotateTime: 135
+--- !u!114 &11495270
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bf89095b4391824a89b57ef53661912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 9590796}
+  adjustAnimSpeedToActualSpeed: 1
+  animSpeed: 0.5
 --- !u!114 &11498304
 MonoBehaviour:
   m_ObjectHideFlags: 1
