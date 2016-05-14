@@ -56,7 +56,7 @@ public class CheckUniqueConnections : MonoBehaviour {
             if (!stillExistingConnections[a]) {
                 int numberToRemove = activeConnections[a];
 
-                print("node to remove: " + numberToRemove);
+                //print("node to remove: " + numberToRemove);
                 activeConnections.Remove(numberToRemove);
 
                 if(RemoveNode != null)
@@ -67,7 +67,7 @@ public class CheckUniqueConnections : MonoBehaviour {
         //add the connections we marked to be new
         for (int i = 0; i < connectionsToAdd.Count; i++) {
             activeConnections.Add(connectionsToAdd[i]);
-            print("node to add = " + connectionsToAdd[i]);
+            //print("node to add = " + connectionsToAdd[i]);
 
             if(AddNode != null)
                AddNode(connectionsToAdd[i]);

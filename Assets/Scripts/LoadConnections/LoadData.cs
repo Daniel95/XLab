@@ -103,8 +103,6 @@ public class LoadData : Cooldown {
 
         results = _www.text;
 
-        print(results);
-
         SendInfo();
     }
 
