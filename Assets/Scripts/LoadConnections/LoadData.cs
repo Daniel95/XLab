@@ -71,8 +71,6 @@ public class LoadData : Cooldown {
 
     void SendInfo()
     {
-        print("send result : " + results);
-
         if (FinishedLoadingConnections != null)
             FinishedLoadingConnections(results);
     }
