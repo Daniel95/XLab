@@ -1,32 +1,31 @@
 fileFormatVersion: 2
-guid: 70caab480ee939346863413c784e245c
-timeCreated: 1462891583
+guid: 12c4d87c380eedf46bb0bc52e32df75d
+timeCreated: 1463243273
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: joint1
-    100004: joint2
-    100006: pCube1
-    100008: pCylinder1
-    100010: arm
-    400000: //RootNode
-    400002: joint1
-    400004: joint2
-    400006: pCube1
-    400008: pCylinder1
-    400010: arm
-    2300000: //RootNode
-    2300002: arm
-    3300000: //RootNode
-    3300002: arm
-    4300000: pCube1
-    4300002: pCylinder1
-    4300004: arm
+    100000: polySurface5
+    100002: polySurface6
+    100004: polySurface7
+    100006: polySurface8
+    100008: //RootNode
+    400000: polySurface5
+    400002: polySurface6
+    400004: polySurface7
+    400006: polySurface8
+    400008: //RootNode
+    2300000: polySurface5
+    2300002: polySurface7
+    2300004: polySurface8
+    3300000: polySurface5
+    3300002: polySurface7
+    3300004: polySurface8
+    4300000: polySurface5
+    4300002: polySurface7
+    4300004: polySurface8
+    7400000: Take 001
     9500000: //RootNode
-    13700000: pCube1
-    13700002: pCylinder1
   materials:
     importMaterials: 1
     materialName: 0
@@ -47,7 +46,45 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: polySurface5
+        weight: 1
+      - path: polySurface6
+        weight: 1
+      - path: polySurface6/polySurface7
+        weight: 1
+      - path: polySurface6/polySurface8
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []

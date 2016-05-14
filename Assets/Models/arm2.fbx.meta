@@ -1,32 +1,17 @@
 fileFormatVersion: 2
-guid: 70caab480ee939346863413c784e245c
-timeCreated: 1462891583
+guid: c59b256e8c236c94a8c8f7073d18ca4e
+timeCreated: 1463244843
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: joint1
-    100004: joint2
-    100006: pCube1
-    100008: pCylinder1
-    100010: arm
-    400000: //RootNode
-    400002: joint1
-    400004: joint2
-    400006: pCube1
-    400008: pCylinder1
-    400010: arm
-    2300000: //RootNode
-    2300002: arm
-    3300000: //RootNode
-    3300002: arm
-    4300000: pCube1
-    4300002: pCylinder1
-    4300004: arm
+    100000: arm
+    100002: //RootNode
+    100004: joint1
+    400000: arm
+    400002: //RootNode
+    400004: joint1
     9500000: //RootNode
-    13700000: pCube1
-    13700002: pCylinder1
   materials:
     importMaterials: 1
     materialName: 0

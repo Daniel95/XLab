@@ -621,7 +621,7 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
---- !u!1001 &801691161
+--- !u!1001 &833533977
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -630,15 +630,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 406586, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 26.2672901
+      value: 26.26729
       objectReference: {fileID: 0}
     - target: {fileID: 406586, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 12.7463427
+      value: 12.746343
       objectReference: {fileID: 0}
     - target: {fileID: 406586, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -6.48999977
+      value: -6.49
       objectReference: {fileID: 0}
     - target: {fileID: 406586, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
       propertyPath: m_LocalRotation.x

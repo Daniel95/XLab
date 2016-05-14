@@ -8,7 +8,7 @@ public class ChangeAnimation : AnimationBase {
         base.FinishedRotating();
         //Play here the animation when the occupier stands still:
 
-        //animator.Play("StateName");
+        animator.Play("still");
     }
 
     public override void SlowSwim()
@@ -16,6 +16,6 @@ public class ChangeAnimation : AnimationBase {
         base.SlowSwim();
         //Play here the animation when the occupier is close to its destination, and start rotating to the other occupier:
 
-        //animator.Play("StateName");
+        animator.Play("swim");
     }
 }
