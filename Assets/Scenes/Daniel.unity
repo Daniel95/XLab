@@ -316,6 +316,7 @@ GameObject:
   - 65: {fileID: 715241580}
   - 23: {fileID: 715241579}
   - 114: {fileID: 715241578}
+  - 114: {fileID: 715241582}
   m_Layer: 0
   m_Name: SpawnPointRight1
   m_TagString: Untagged
@@ -391,6 +392,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 715241576}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &715241582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 715241576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00534b86837840439d1b10885131197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridController: {fileID: 1248672327}
+  amountToMove: 0.5
+  movePositive: 1
 --- !u!1 &785162435
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +418,7 @@ GameObject:
   - 65: {fileID: 785162438}
   - 23: {fileID: 785162437}
   - 114: {fileID: 785162440}
+  - 114: {fileID: 785162441}
   m_Layer: 0
   m_Name: SpawnPointLeft1
   m_TagString: Untagged
@@ -478,6 +494,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91a9f52396865a4fa9a8d37f8162c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &785162441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 785162435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00534b86837840439d1b10885131197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridController: {fileID: 1248672327}
+  amountToMove: 0.5
+  movePositive: 0
 --- !u!1 &787419061
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +567,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 300
+  far clip plane: 50
   field of view: 48.11003
   orthographic: 0
   orthographic size: 5
@@ -561,13 +591,13 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 787419061}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -8}
+  m_LocalPosition: {x: 0, y: -3, z: -6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 993321718}
   - {fileID: 1706229147}
   - {fileID: 1947697370}
   - {fileID: 1125011464}
-  - {fileID: 993321718}
   m_Father: {fileID: 0}
   m_RootOrder: 4
 --- !u!114 &787419067
@@ -583,6 +613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridController: {fileID: 1248672327}
   zoomTime: 0.95
+  xOffset: 0.35
 --- !u!114 &787419068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -796,7 +827,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 993321717}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.4994545, y: 5.1328497, z: 8}
+  m_LocalPosition: {x: -8.499453, y: 8.13285, z: 6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 785162436}
@@ -804,7 +835,7 @@ Transform:
   - {fileID: 715241577}
   - {fileID: 1407763837}
   m_Father: {fileID: 787419066}
-  m_RootOrder: 3
+  m_RootOrder: 0
 --- !u!1001 &1044264441
 Prefab:
   m_ObjectHideFlags: 0
@@ -2401,11 +2432,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1125011461}
   m_LocalRotation: {x: 1.061726e-13, y: -0.00000032584137, z: -0.00000032584137, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 5.74}
+  m_LocalPosition: {x: -5, y: 0, z: 3.7399998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 787419066}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &1248672322
 GameObject:
   m_ObjectHideFlags: 0
@@ -2505,7 +2536,7 @@ MonoBehaviour:
   testObj: {fileID: 138982, guid: ee74438548e90ba4fba2e60738ecd92f, type: 2}
   maxXLength: 100
   maxYLength: 100
-  xOffSet: -1.3
+  xOffSet: -1
   nodeSize: 2
 --- !u!114 &1248672328
 MonoBehaviour:
@@ -2530,6 +2561,7 @@ GameObject:
   - 65: {fileID: 1407763840}
   - 23: {fileID: 1407763839}
   - 114: {fileID: 1407763838}
+  - 114: {fileID: 1407763842}
   m_Layer: 0
   m_Name: SpawnPointRight2
   m_TagString: Untagged
@@ -2605,6 +2637,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1407763836}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1407763842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1407763836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00534b86837840439d1b10885131197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridController: {fileID: 1248672327}
+  amountToMove: 0.5
+  movePositive: 1
 --- !u!1 &1575173134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2617,6 +2663,7 @@ GameObject:
   - 65: {fileID: 1575173137}
   - 23: {fileID: 1575173136}
   - 114: {fileID: 1575173139}
+  - 114: {fileID: 1575173140}
   m_Layer: 0
   m_Name: SpawnPointLeft2
   m_TagString: Untagged
@@ -2692,6 +2739,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f91a9f52396865a4fa9a8d37f8162c5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1575173140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1575173134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e00534b86837840439d1b10885131197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gridController: {fileID: 1248672327}
+  amountToMove: 0.5
+  movePositive: 0
 --- !u!1 &1706229144
 GameObject:
   m_ObjectHideFlags: 0
@@ -4246,11 +4307,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1706229144}
   m_LocalRotation: {x: 1.061726e-13, y: -0.00000032584137, z: -0.00000032584137, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 9.2}
+  m_LocalPosition: {x: -5, y: 0, z: 7.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 787419066}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &1937577946
 GameObject:
   m_ObjectHideFlags: 0
@@ -5896,8 +5957,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1947697367}
   m_LocalRotation: {x: 1.061726e-13, y: -0.00000032584137, z: -0.00000032584137, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 1.6799994}
+  m_LocalPosition: {x: -5, y: 0, z: -0.32000065}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 787419066}
-  m_RootOrder: 1
+  m_RootOrder: 2

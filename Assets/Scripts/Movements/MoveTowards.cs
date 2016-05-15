@@ -123,8 +123,8 @@ public class MoveTowards : MonoBehaviour
 
         GridController gridController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GridController>();
 
-        float xPos = gridController.OccupatedNodesFieldSize + 7.5f;
-        float yPos = gridController.OccupatedNodesFieldSize + 7.5f;
+        float xPos = gridController.OccupatedNodesRowsRadius + 7.5f;
+        float yPos = gridController.OccupatedNodesRowsRadius + 7.5f;
 
         if (Random.Range(0, 0.99f) > 0.5f)
             xPos *= -1;
@@ -140,7 +140,6 @@ public class MoveTowards : MonoBehaviour
     }
 
     void DestroySelf() {
-        print("destroy self");
         FinishedMoving -= DestroySelf;
         Destroy(gameObject);
     }

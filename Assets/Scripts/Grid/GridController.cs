@@ -35,8 +35,9 @@ public class GridController : MonoBehaviour {
         for (int x = 0; x < maxXLength; x++) {
             for (int y = 0; y < maxYLength; y++) {
                 GameObject obj = Instantiate(testObj, new Vector3(0,0), transform.rotation) as GameObject;
-                nodes[x, y] = new Node(x + xOffSet, y , obj);
-                nodes[x, y].TestObj.transform.position = new Vector2(nodes[x, y].X * nodeSize + xOffSet, nodes[x, y].Y * nodeSize);
+                //nodes[x, y] = new Node(x + xOffSet, y , obj);
+                nodes[x, y] = new Node(x + xOffSet, y, obj);
+                nodes[x, y].TestObj.transform.position = new Vector2(nodes[x, y].X * nodeSize, nodes[x, y].Y * nodeSize);
                 nodes[x, y].TestObj.SetActive(false);
             }
         }
@@ -111,7 +112,7 @@ public class GridController : MonoBehaviour {
 
         if (xPosToChange < maxXLength && yPosToChange < maxYLength)
         {
-            //nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
+            nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
             nodes[xPosToChange, yPosToChange].Occupied = true;
             nodes[xPosToChange, yPosToChange].NodeNumber = _nodeNumber;
 
@@ -149,7 +150,8 @@ public class GridController : MonoBehaviour {
     }
 
     private int OccupiedNodesRadius(int _occupiedNodesAmount) {
-        return Mathf.FloorToInt(Mathf.FloorToInt(Mathf.Sqrt(_occupiedNodesAmount)) / 2);
+        //return Mathf.FloorToInt(Mathf.FloorToInt(Mathf.Sqrt(_occupiedNodesAmount)) / 2);
+        return Mathf.FloorToInt(Mathf.Sqrt(_occupiedNodesAmount));
     }
 
     public void EmptyNode(int _nodeNumber)
@@ -171,9 +173,9 @@ public class GridController : MonoBehaviour {
         {
             foreach (Node _node in occupiedNodes) {
                 if (_node.NodeNumber == _nodeNumber) {
+                    _node.TestObj.SetActive(false);
                     _node.RemoveOccupiers();
                     _node.Occupied = false;
-                    print("node " + _nodeNumber + " got removed");
                     break;
                 }
             }
@@ -208,12 +210,8 @@ public class GridController : MonoBehaviour {
         get { return maxYLength; }
     }
 
-    public int OccupatedNodesRowsRadius
+    public float OccupatedNodesRowsRadius
     {
-        get { return occupatedNodesRowsRadius; }
-    }
-
-    public float OccupatedNodesFieldSize {
-        get { return nodeSize * (occupatedNodesRowsRadius * 2); }
+        get { return nodeSize * occupatedNodesRowsRadius; }
     }
 }
