@@ -6,10 +6,17 @@ ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: //RootNode
+    100002: arm:arm
+    100004: arm:joint1
     400000: //RootNode
+    400002: arm:arm
+    400004: arm:joint1
     2300000: //RootNode
+    2300002: arm:arm
     3300000: //RootNode
+    3300002: arm:arm
     4300000: pCube1
+    4300002: arm:arm
     9500000: //RootNode
   materials:
     importMaterials: 1
