@@ -10,13 +10,13 @@ public class AnimationBase : MonoBehaviour {
     private bool adjustAnimSpeedToActualSpeed = true;
 
     [SerializeField]
-    private float animSpeed;
+    private float fastSwimAnimSpeed;
 
     private ChangeRotatingTarget changeRotatingTarget;
 
     private MoveTowards moveTowards;
 
-    protected bool swimming = true;
+    protected bool trackingSpeed = true;
 
     private void Awake() {
         changeRotatingTarget = GetComponent<ChangeRotatingTarget>();
@@ -42,23 +42,23 @@ public class AnimationBase : MonoBehaviour {
 
     public virtual void SlowSwim()
     {
-
+        trackingSpeed = false;
     }
 
     public virtual void FinishedRotating() {
-        swimming = false;
+
     }
 
     public virtual void SwimAway()
     {
-        swimming = true;
+        trackingSpeed = true;
         if (adjustAnimSpeedToActualSpeed)
             StartCoroutine(TrackSpeed());
     }
 
-    IEnumerator TrackSpeed() {
-        while (swimming) {
-            animator.speed = MoveTowards.actualMoveSpeed * animSpeed;
+    protected IEnumerator TrackSpeed() {
+        while (trackingSpeed) {
+            animator.speed = MoveTowards.actualMoveSpeed * fastSwimAnimSpeed;
             yield return new WaitForFixedUpdate();
         }
     }
