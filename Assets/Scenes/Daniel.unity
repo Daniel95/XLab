@@ -85,6 +85,48 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &498534364
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460002, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 15.931903
+      objectReference: {fileID: 0}
+    - target: {fileID: 460002, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 11.233526
+      objectReference: {fileID: 0}
+    - target: {fileID: 460002, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1.8408353
+      objectReference: {fileID: 0}
+    - target: {fileID: 460002, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460002, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460002, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 460002, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 460002, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &642352651
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,6 +843,7 @@ Transform:
   - {fileID: 1407763837}
   m_Father: {fileID: 787419066}
   m_RootOrder: 3
+<<<<<<< HEAD
 --- !u!1001 &1044264441
 Prefab:
   m_ObjectHideFlags: 0
@@ -847,6 +890,8 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04247bee19d185e4384b14e45c808728, type: 2}
   m_IsPrefabParent: 0
+=======
+>>>>>>> origin/master
 --- !u!1 &1125011461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2443,7 +2488,7 @@ MonoBehaviour:
   spawnPointRight2: {fileID: 1407763837}
   studentsToSpawn:
   - {fileID: 123634, guid: ac8b524704a3a154186326b2b9492695, type: 2}
-  - {fileID: 2027910181}
+  - {fileID: 1975575122}
   - {fileID: 190398, guid: e67d3575fe730d149a63143f517e88f7, type: 2}
   teachterToSpawn:
   - {fileID: 137860, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
@@ -5901,7 +5946,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 787419066}
   m_RootOrder: 1
---- !u!1 &2027910181 stripped
+--- !u!1 &1975575122 stripped
 GameObject:
-  m_PrefabParentObject: {fileID: 104820, guid: 04247bee19d185e4384b14e45c808728, type: 2}
-  m_PrefabInternal: {fileID: 1044264441}
+  m_PrefabParentObject: {fileID: 199960, guid: 1a0a073988fbdf24e9069d3769bd56fd, type: 2}
+  m_PrefabInternal: {fileID: 498534364}
