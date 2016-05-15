@@ -23,6 +23,11 @@ public class ChangeAnimation : AnimationBase {
     {
         base.SwimAway();
         //play here the animation when the connection has ended, and the occupier swims away
+<<<<<<< HEAD
 		animator.Play("swim");
+=======
+
+
+>>>>>>> parent of 9eb624c... edited animation speed
     }
 }
