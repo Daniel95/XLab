@@ -17,6 +17,11 @@ public class ConnectionsController : MonoBehaviour {
 
     private int oldValue = 0;
 
+    void Start() {
+        StartCoroutine(RandomIncrementOrDecrement());
+        //gridController.FillNode(0);
+    }
+
     void OnEnable()
     {
         loadData.FinishedLoadingConnections += ControlGridFunctions;
@@ -35,7 +40,7 @@ public class ConnectionsController : MonoBehaviour {
 
     void ControlGridFunctions(string _unsplitData)
     {
-        checkUniqueConnections.UpdateConnections(_unsplitData);
+        //checkUniqueConnections.UpdateConnections(_unsplitData);
     }
 
     void SpawnOccupiers(Node _node, float _nodeSize) {
@@ -43,7 +48,7 @@ public class ConnectionsController : MonoBehaviour {
     }
 
     //old functions to test the simulation
-    /*
+    
     IEnumerator RandomIncrementOrDecrement()
     {
         int difference = Random.Range(-1, 2);
@@ -57,39 +62,19 @@ public class ConnectionsController : MonoBehaviour {
         {
             for (int i = 0; i < Mathf.Abs(difference); i++)
             {
-                gridController.EmptyNode(0);
+                gridController.EmptyNode(Random.Range(0, gridController.GetOccupiedNodeLength()));
             }
         }
         else if (difference > 0)
         {
             for (int i = 0; i < difference; i++)
             {
-                gridController.FillNode();
+                gridController.FillNode(Random.Range(0, gridController.GetOccupiedNodeLength()));
             }
         }
 
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
 
         StartCoroutine(RandomIncrementOrDecrement());
-    }*/
-
-    /*
-    void ControlGridFunctions(int _newValue) {
-        //get the difference
-        var difference = oldValue - _newValue;
-
-        if (difference < 0)
-        {
-            for (int i = 0; i < Mathf.Abs(difference); i++) {
-                gridController.EmptyNode(0);
-            }
-        }
-        else if (difference > 0)
-        {
-            for (int i = 0; i < difference; i++)
-            {
-                gridController.FillNode();
-            }
-        }
-    }*/
+    }
 }

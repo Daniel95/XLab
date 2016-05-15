@@ -15,10 +15,16 @@ public class MoveTowards : MonoBehaviour
     //delegate instance
     public ConnectionEndedMethod FinishedConnection;
 
-    public static float actualMoveSpeed;
+    //delegate type
+    public delegate void FinishedMovingMethod();
+
+    //delegate instance
+    public FinishedMovingMethod FinishedMoving;
+
+    private float actualMoveSpeed;
 
     [SerializeField]
-    private float speed = 0.008f;
+    private float vectToTargetMultiplier = 0.008f;
 
     [SerializeField]
     private float rotateSpeed = 0.05f;
@@ -28,11 +34,11 @@ public class MoveTowards : MonoBehaviour
 
     private Quaternion targetRotation;
 
-    private Vector2 exitConnectionGotoPoint;
+    private Vector2 exitPoint;
 
     public void SetTargetToMove(Vector2 _newTarget)
     {
-        StartCoroutine(MoveToTarget(_newTarget, false));
+        StartCoroutine(MoveToTarget(_newTarget));
     }
 
     public void SetTargetToRotate(Vector2 _newTarget)
@@ -46,7 +52,7 @@ public class MoveTowards : MonoBehaviour
     }
 
     //move smooth to the target
-    IEnumerator MoveToTarget(Vector2 _target, bool _destructSelfOnExit) {
+    IEnumerator MoveToTarget(Vector2 _target) {
 
         while (Vector2.Distance(transform.position, _target) > minDistance) {
             //the difference in vector to the target
@@ -55,13 +61,13 @@ public class MoveTowards : MonoBehaviour
             actualMoveSpeed = Mathf.Abs(vectorToTarget.x) + Mathf.Abs(vectorToTarget.y);
 
             //move towards the target pos
-            transform.position += new Vector3(vectorToTarget.x, vectorToTarget.y, 0) * speed;
+            transform.position += new Vector3(vectorToTarget.x, vectorToTarget.y, 0) * vectToTargetMultiplier;
 
             yield return new WaitForFixedUpdate();
         }
 
-        if (_destructSelfOnExit)
-            Destroy(gameObject);
+        if (FinishedMoving != null)
+            FinishedMoving();
     }
 
     //rotate smooth to the target, the target position is not updated
@@ -112,8 +118,34 @@ public class MoveTowards : MonoBehaviour
     }
 
     public void MoveAway() {
-        StartCoroutine(MoveToTarget(new Vector2(-1000, 1000), true));
+        //stop all coroutines, so that it no longer rotates, or moves to its old target
+        StopAllCoroutines();
+
+        GridController gridController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GridController>();
+
+        float xPos = gridController.OccupatedNodesFieldSize + 7.5f;
+        float yPos = gridController.OccupatedNodesFieldSize + 7.5f;
+
+        if (Random.Range(0, 0.99f) > 0.5f)
+            xPos *= -1;
+        if (Random.Range(0, 0.99f) > 0.5f)
+            yPos *= -1;
+
+        FinishedMoving += DestroySelf;
+        StartCoroutine(MoveToTarget(new Vector2(transform.position.x + xPos, transform.position.y + yPos)));
+        StartCoroutine(RotateToTarget(new Vector2(transform.position.x + xPos, transform.position.y + yPos)));
+
         if (FinishedConnection != null)
             FinishedConnection();
+    }
+
+    void DestroySelf() {
+        print("destroy self");
+        FinishedMoving -= DestroySelf;
+        Destroy(gameObject);
+    }
+
+    public float ActualMoveSpeed {
+        get { return actualMoveSpeed; }
     }
 }

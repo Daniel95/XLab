@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ChangeAnimation : AnimationBase {
+public class ChangeAnimationSpeed : AnimationBase {
 
     [SerializeField]
     private float slowSwimSpeed = 0.3f;
@@ -14,7 +14,6 @@ public class ChangeAnimation : AnimationBase {
         base.FinishedRotating();
         //Play here the animation when the occupier stands still:
         animator.speed = finishedRotationSpeed;
-        //animator.Play("StateName");
     }
 
     public override void SlowSwim()
@@ -22,7 +21,6 @@ public class ChangeAnimation : AnimationBase {
         base.SlowSwim();
         //Play here the animation when the occupier is close to its destination, and start rotating to the other occupier:
         animator.speed = slowSwimSpeed;
-        //animator.Play("StateName");
     }
 
     public override void SwimAway()

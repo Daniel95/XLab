@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e9788b0765688479eb15906606371b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.008
+  vectToTargetMultiplier: 0.005
   rotateSpeed: 0.05
   minDistance: 0.05
 --- !u!114 &11456576

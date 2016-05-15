@@ -4,9 +4,6 @@ using System.Collections;
 public class AnimationBase : MonoBehaviour {
 
     [SerializeField]
-    protected Animator animator;
-
-    [SerializeField]
     private bool adjustAnimSpeedToActualSpeed = true;
 
     [SerializeField]
@@ -16,16 +13,20 @@ public class AnimationBase : MonoBehaviour {
 
     private MoveTowards moveTowards;
 
-    protected bool trackSpeed = true;
+    protected Animator animator;
 
-    private void Awake() {
+    protected bool tracking = true;
+
+    protected virtual void Awake() {
         changeRotatingTarget = GetComponent<ChangeRotatingTarget>();
         moveTowards = GetComponent<MoveTowards>();
+
+        animator = transform.GetComponentInChildren<Animator>();
 
         if (adjustAnimSpeedToActualSpeed)
             StartCoroutine(TrackSpeed());
     }
-
+    
     void OnEnable()
     {
         changeRotatingTarget.SlowSwim += SlowSwim;
@@ -42,23 +43,23 @@ public class AnimationBase : MonoBehaviour {
 
     public virtual void SlowSwim()
     {
-
+        tracking = false;
     }
 
     public virtual void FinishedRotating() {
-        trackSpeed = false;
+
     }
 
     public virtual void SwimAway()
     {
-        trackSpeed = true;
+        tracking = true;
         if (adjustAnimSpeedToActualSpeed)
             StartCoroutine(TrackSpeed());
     }
-
+    
     IEnumerator TrackSpeed() {
-        while (trackSpeed) {
-            animator.speed = MoveTowards.actualMoveSpeed * fastSwimSpeedMultiplier;
+        while (tracking) {
+            animator.speed = moveTowards.ActualMoveSpeed * fastSwimSpeedMultiplier;
             yield return new WaitForFixedUpdate();
         }
     }

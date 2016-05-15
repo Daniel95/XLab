@@ -180,6 +180,19 @@ public class GridController : MonoBehaviour {
         }
     }
 
+    public int GetOccupiedNodeLength() {
+        int index = 0;
+        foreach (Node _node in nodes)
+        {
+            if (_node.Occupied)
+            {
+                index++;
+            }
+        }
+
+        return index;
+    }
+
     public float NodeSize
     {
         get { return nodeSize; }
@@ -198,5 +211,9 @@ public class GridController : MonoBehaviour {
     public int OccupatedNodesRowsRadius
     {
         get { return occupatedNodesRowsRadius; }
+    }
+
+    public float OccupatedNodesFieldSize {
+        get { return nodeSize * (occupatedNodesRowsRadius * 2); }
     }
 }

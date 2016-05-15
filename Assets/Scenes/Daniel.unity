@@ -561,7 +561,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 787419061}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5, y: 0, z: -8}
+  m_LocalPosition: {x: 0, y: 0, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1706229147}
@@ -630,15 +630,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 406586, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 26.2672901
+      value: 26.26729
       objectReference: {fileID: 0}
     - target: {fileID: 406586, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 12.7463427
+      value: 12.746343
       objectReference: {fileID: 0}
     - target: {fileID: 406586, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -6.48999977
+      value: -6.49
       objectReference: {fileID: 0}
     - target: {fileID: 406586, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
       propertyPath: m_LocalRotation.x
@@ -659,6 +659,10 @@ Prefab:
     - target: {fileID: 406586, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 137860, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
@@ -839,18 +843,6 @@ Prefab:
     - target: {fileID: 411158, guid: 04247bee19d185e4384b14e45c808728, type: 2}
       propertyPath: m_RootOrder
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 104820, guid: 04247bee19d185e4384b14e45c808728, type: 2}
-      propertyPath: m_Name
-      value: Student 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 11485846, guid: 04247bee19d185e4384b14e45c808728, type: 2}
-      propertyPath: adjustAnimSpeedToActualSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11485846, guid: 04247bee19d185e4384b14e45c808728, type: 2}
-      propertyPath: fastSwimSpeedMultiplier
-      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04247bee19d185e4384b14e45c808728, type: 2}
@@ -2429,7 +2421,7 @@ GameObject:
   - 114: {fileID: 1248672328}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2450,9 +2442,9 @@ MonoBehaviour:
   spawnPointRight1: {fileID: 715241577}
   spawnPointRight2: {fileID: 1407763837}
   studentsToSpawn:
-  - {fileID: 123634, guid: ac8b524704a3a154186326b2b9492695, type: 2}
-  - {fileID: 2027910181}
-  - {fileID: 190398, guid: e67d3575fe730d149a63143f517e88f7, type: 2}
+  - {fileID: 104820, guid: 04247bee19d185e4384b14e45c808728, type: 2}
+  - {fileID: 104820, guid: 04247bee19d185e4384b14e45c808728, type: 2}
+  - {fileID: 104820, guid: 04247bee19d185e4384b14e45c808728, type: 2}
   teachterToSpawn:
   - {fileID: 137860, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
   - {fileID: 129320, guid: b1a7bc01cd557e64e813328f7901ae30, type: 2}
@@ -4277,7 +4269,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1937577947
 Transform:
   m_ObjectHideFlags: 0
@@ -4330,7 +4322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e9788b0765688479eb15906606371b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.008
+  vectToTargetMultiplier: 0.008
   rotateSpeed: 0.05
   minDistance: 0.05
 --- !u!95 &1937577951
@@ -5909,7 +5901,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 787419066}
   m_RootOrder: 1
---- !u!1 &2027910181 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 104820, guid: 04247bee19d185e4384b14e45c808728, type: 2}
-  m_PrefabInternal: {fileID: 1044264441}

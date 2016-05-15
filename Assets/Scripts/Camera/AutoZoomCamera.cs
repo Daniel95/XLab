@@ -19,7 +19,10 @@ public class AutoZoomCamera : MonoBehaviour
     }
 
     void Update() {
-        if (transform.position != new Vector3(startPos.x, startPos.y, startPos.z - gridController.NodeSize * (gridController.OccupatedNodesRowsRadius * 2)))
-            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(startPos.x, startPos.y, startPos.z - gridController.NodeSize * (gridController.OccupatedNodesRowsRadius * 2)), ref velocity, zoomTime);
+        if (transform.position != new Vector3(startPos.x, startPos.y, startPos.z - gridController.OccupatedNodesFieldSize))
+        {
+            //transform.position = Vector3.SmoothDamp(transform.position, new Vector3(startPos.x, startPos.y, startPos.z - gridController.NodeSize * (gridController.OccupatedNodesRowsRadius * 2)), ref velocity, zoomTime);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(startPos.x, startPos.y, startPos.z - gridController.OccupatedNodesFieldSize), ref velocity, zoomTime);
+        }
     }
 }
