@@ -112,7 +112,7 @@ public class GridController : MonoBehaviour {
 
         if (xPosToChange < maxXLength && yPosToChange < maxYLength)
         {
-            nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
+            //nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
             nodes[xPosToChange, yPosToChange].Occupied = true;
             nodes[xPosToChange, yPosToChange].NodeNumber = _nodeNumber;
 
@@ -173,7 +173,7 @@ public class GridController : MonoBehaviour {
         {
             foreach (Node _node in occupiedNodes) {
                 if (_node.NodeNumber == _nodeNumber) {
-                    _node.TestObj.SetActive(false);
+                    //_node.TestObj.SetActive(false);
                     _node.RemoveOccupiers();
                     _node.Occupied = false;
                     break;
