@@ -1929,7 +1929,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.593793, y: -0.70915985, z: 5.086789}
+  m_LocalPosition: {x: 98.332, y: 98.567, z: 5.086789}
   m_LocalScale: {x: 0.10145352, y: 0.10145353, z: 0.10145353}
   m_Children:
   - {fileID: 467676}
@@ -2215,8 +2215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myInfoVisual: {fileID: 435812}
-  myHead: {fileID: 0}
-  pointVisual: {fileID: 0}
+  myHead: {fileID: 467676}
+  pointVisual: {fileID: 138982, guid: ee74438548e90ba4fba2e60738ecd92f, type: 2}
 --- !u!114 &11452986
 MonoBehaviour:
   m_ObjectHideFlags: 1
