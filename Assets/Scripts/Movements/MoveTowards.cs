@@ -123,8 +123,8 @@ public class MoveTowards : MonoBehaviour
 
         GridController gridController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GridController>();
 
-        float xPos = gridController.OccupatedNodesRowsRadius + 7.5f;
-        float yPos = gridController.OccupatedNodesRowsRadius + 7.5f;
+        float xPos = gridController.OccupatedNodesRowsRadius + 13f;
+        float yPos = gridController.OccupatedNodesRowsRadius + 13f;
 
         if (Random.Range(0, 0.99f) > 0.5f)
             xPos *= -1;

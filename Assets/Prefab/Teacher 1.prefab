@@ -344,9 +344,10 @@ GameObject:
   - 114: {fileID: 11446878}
   - 114: {fileID: 11432374}
   - 114: {fileID: 11415884}
+  - 114: {fileID: 11498772}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -665,7 +666,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 132720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.101646, y: 6.8235445, z: 9.646503}
+  m_LocalPosition: {x: 97.46113, y: 99.054115, z: 9.646503}
   m_LocalScale: {x: 0.10145352, y: 0.101453535, z: 0.101453535}
   m_Children:
   - {fileID: 460050}
@@ -1299,7 +1300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bf89095b4391824a89b57ef53661912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 9566698}
   adjustAnimSpeedToActualSpeed: 1
   fastSwimSpeedMultiplier: 0
   slowSwimSpeed: 0.3
@@ -1394,6 +1394,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myInfoVisual: {fileID: 419952}
+  myHead: {fileID: 460050}
+--- !u!114 &11498772
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 153976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4ffdf59b6f719419074407b6e6f4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffect:
+  - {fileID: 408636, guid: 8d7730770eba9ab4d9dd5a9b72e6c753, type: 2}
+  - {fileID: 476502, guid: ce3c3150faa15dc44b7415198e4abfb1, type: 2}
+  - {fileID: 448400, guid: 456f8700e9c59d44b8cc1d770f84a914, type: 2}
+  - {fileID: 476502, guid: ce3c3150faa15dc44b7415198e4abfb1, type: 2}
+  tagToPlayEffectOn: Ball
 --- !u!135 &13508268
 SphereCollider:
   m_ObjectHideFlags: 1

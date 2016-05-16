@@ -53,7 +53,7 @@ public class ChangeRotatingTarget : MonoBehaviour {
 
     private void StartConnectionEffect()
     {
-        GetComponent<ConnectionEffect>().StartEffect(newTarget.position);
+        GetComponent<ConnectionEffect>().StartEffect(newTarget);
     }
 
     public Transform NewTarget

@@ -84,9 +84,10 @@ GameObject:
   - 114: {fileID: 11435200}
   - 114: {fileID: 11485724}
   - 114: {fileID: 11452620}
+  - 114: {fileID: 11450306}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -267,7 +268,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189506}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.015594, y: 14.017558, z: 0}
+  m_LocalPosition: {x: 98.42192, y: 99.66209, z: 0}
   m_LocalScale: {x: 0.0116808005, y: 0.0116808005, z: 0.0116808005}
   m_Children:
   - {fileID: 496858}
@@ -935,6 +936,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myInfoVisual: {fileID: 405882}
+  myHead: {fileID: 496858}
 --- !u!114 &11424762
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -988,6 +990,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minDistance: 4
   minRotateTime: 135
+--- !u!114 &11450306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4ffdf59b6f719419074407b6e6f4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffect:
+  - {fileID: 408636, guid: 8d7730770eba9ab4d9dd5a9b72e6c753, type: 2}
+  - {fileID: 468746, guid: eac4a6c155eed3445ad6d4cb46527148, type: 2}
+  - {fileID: 448400, guid: 456f8700e9c59d44b8cc1d770f84a914, type: 2}
+  - {fileID: 476502, guid: ce3c3150faa15dc44b7415198e4abfb1, type: 2}
+  tagToPlayEffectOn: Ball
 --- !u!114 &11452620
 MonoBehaviour:
   m_ObjectHideFlags: 1
