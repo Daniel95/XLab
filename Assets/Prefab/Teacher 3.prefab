@@ -699,10 +699,9 @@ GameObject:
   - 114: {fileID: 11430016}
   - 114: {fileID: 11439988}
   - 114: {fileID: 11448318}
-  - 114: {fileID: 11456448}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Ball
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1039,7 +1038,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 143400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 99.11124, y: 98.489586, z: 0.965847}
+  m_LocalPosition: {x: 14.0876045, y: 10.156263, z: 11.636139}
   m_LocalScale: {x: 0.10145352, y: 0.10145353, z: 0.10145353}
   m_Children:
   - {fileID: 425698}
@@ -1554,7 +1553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e9788b0765688479eb15906606371b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vectToTargetMultiplier: 0.005
+  speed: 0.008
   rotateSpeed: 0.05
   minDistance: 0.05
 --- !u!114 &11430016
@@ -1619,24 +1618,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myInfoVisual: {fileID: 458044}
-  myHead: {fileID: 426898}
---- !u!114 &11456448
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 198878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba4ffdf59b6f719419074407b6e6f4af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  explosionEffect:
-  - {fileID: 408636, guid: 8d7730770eba9ab4d9dd5a9b72e6c753, type: 2}
-  - {fileID: 476502, guid: ce3c3150faa15dc44b7415198e4abfb1, type: 2}
-  - {fileID: 448400, guid: 456f8700e9c59d44b8cc1d770f84a914, type: 2}
-  - {fileID: 476502, guid: ce3c3150faa15dc44b7415198e4abfb1, type: 2}
-  tagToPlayEffectOn: Ball
 --- !u!135 &13578042
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1659,7 +1640,7 @@ SkinnedMeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_Materials:
-  - {fileID: 2100000, guid: 24f48675401d70e4095517fda9bce652, type: 2}
+  - {fileID: 2100000, guid: 49baaac002ca8b04b9e03a54441e1e53, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 1
@@ -1678,13 +1659,13 @@ SkinnedMeshRenderer:
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
-  m_Mesh: {fileID: 4300002, guid: 70caab480ee939346863413c784e245c, type: 3}
+  m_Mesh: {fileID: 4300006, guid: 70caab480ee939346863413c784e245c, type: 3}
   m_Bones: []
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 447782}
   m_AABB:
-    m_Center: {x: 0, y: 4.7641907, z: 0}
-    m_Extent: {x: 0.9999982, y: 4.8102746, z: 0.99999994}
+    m_Center: {x: -0.000015258789, y: 4.76416, z: 0}
+    m_Extent: {x: 0.9999982, y: 4.810291, z: 0.999998}
   m_DirtyAABB: 0
 --- !u!183 &18396614
 Cloth:
