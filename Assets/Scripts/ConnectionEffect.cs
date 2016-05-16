@@ -9,8 +9,11 @@ public class ConnectionEffect : MonoBehaviour {
     [SerializeField]
     private Transform myHead;
 
-    public void StartEffect(Transform _otherOccupier) {
+    [SerializeField]
+    private GameObject pointVisual;
 
+    public void StartEffect(Transform _otherOccupier)
+    {
         IgnoreCollisions ignoreCollisions = myInfoVisual.GetComponent<IgnoreCollisions>();
         ignoreCollisions.AddActiveCollision(_otherOccupier.GetComponent<ConnectionEffect>().MyInfoVisual);
         ignoreCollisions.RemoveActiveCollision(myHead);
@@ -19,14 +22,28 @@ public class ConnectionEffect : MonoBehaviour {
 
         myInfoVisual.GetComponent<ControlledBounce>().ControlBounce = false;
 
+        SpawnWayPoints(_otherOccupier.position);
+    }
+
+    void SpawnWayPoints(Vector2 _otherOccupierPosition)
+    {
         WaypointsController waypointsController = myInfoVisual.GetComponent<WaypointsController>();
 
+        Vector2 vectorToTarget = (Vector2)transform.position - _otherOccupierPosition;
 
-
-        waypointsController.AddWaypoint(_otherOccupier.position);
+        //add points:
         waypointsController.AddWaypoint(transform.position);
 
+        //Instantiate(pointVisual, new Vector2())
 
+        //waypointsController.AddWaypoint();
+
+
+
+
+
+        waypointsController.AddWaypoint(_otherOccupierPosition);
+        
 
         waypointsController.StartPatrolling();
     }
