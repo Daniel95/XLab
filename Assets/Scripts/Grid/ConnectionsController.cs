@@ -18,8 +18,8 @@ public class ConnectionsController : MonoBehaviour {
     private int oldValue = 0;
 
     void Start() {
-        StartCoroutine(RandomIncrementOrDecrement());
-        //gridController.FillNode(0);
+        //StartCoroutine(RandomIncrementOrDecrement());
+        gridController.FillNode(0);
     }
 
     void OnEnable()
