@@ -439,6 +439,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myInfoVisual: {fileID: 418814}
+  myHead: {fileID: 0}
+  pointVisual: {fileID: 0}
+  isStudent: 1
 --- !u!114 &11454702
 MonoBehaviour:
   m_ObjectHideFlags: 1

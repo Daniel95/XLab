@@ -12,6 +12,8 @@ public class WaypointsController : MonoBehaviour
 
     private Vector2 localStartPos;
 
+    private int increment = 1;
+
     void Awake()
     {
         goToPointSmooth = GetComponent<GoToPointSmooth>();
@@ -31,10 +33,12 @@ public class WaypointsController : MonoBehaviour
     //set the next, or first waypoint in the array as target in followpointsmooth.
     private void NextPoint()
     {
-        if (waypointIndex < waypoints.Count - 1)
-            waypointIndex++;
-        else
+        waypointIndex += increment;
+
+       if (waypointIndex >= waypoints.Count)
             waypointIndex = 0;
+       else if(waypointIndex < 0)
+            waypointIndex = waypoints.Count - 1;
 
         goToPointSmooth.Point = waypoints[waypointIndex];
         goToPointSmooth.StartSeeking();
@@ -53,5 +57,18 @@ public class WaypointsController : MonoBehaviour
 
     public void AddWaypoint(Vector2 _newWaypoint) {
         waypoints.Add(_newWaypoint);
+    }
+
+    public void SetBackwards(bool _backwards)
+    {
+        if (_backwards)
+            increment = -1;
+        else
+            increment = 1;
+    }
+
+    public int WaypointIndex
+    {
+        set { waypointIndex = value; }
     }
 }

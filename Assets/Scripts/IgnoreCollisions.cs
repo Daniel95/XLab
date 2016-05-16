@@ -19,6 +19,7 @@ public class IgnoreCollisions : MonoBehaviour
     {
         for (int i = 0; i < activeCollisions.Count; i++) {
             if (_collision.transform != activeCollisions[i]) {
+                print(_collision.gameObject);
                 Physics.IgnoreCollision(myCollider, _collision.collider);
             }
         }

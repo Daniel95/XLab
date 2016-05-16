@@ -357,7 +357,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 97.73254, y: 99.710945, z: 0}
+  m_LocalPosition: {x: 0.17743638, y: -0.3204459, z: 0}
   m_LocalScale: {x: 0.0116808005, y: 0.0116808005, z: 0.0116808005}
   m_Children:
   - {fileID: 485076}
@@ -998,10 +998,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd02215151cda748a904a1920b53458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 2
+  cooldown: 3
   cooldownRandomizer: 1
-  pushStrength: 10
-  pushStrengthRandomizer: 0.5
+  pushStrength: 6
+  pushStrengthRandomizer: 2
 --- !u!114 &11402262
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1015,9 +1015,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionEffect:
   - {fileID: 408636, guid: 8d7730770eba9ab4d9dd5a9b72e6c753, type: 2}
-  - {fileID: 468746, guid: eac4a6c155eed3445ad6d4cb46527148, type: 2}
-  - {fileID: 448400, guid: 456f8700e9c59d44b8cc1d770f84a914, type: 2}
-  - {fileID: 476502, guid: ce3c3150faa15dc44b7415198e4abfb1, type: 2}
+  - {fileID: 430794, guid: 720d4ece67a3b6145967a40a9e8f9e9c, type: 2}
+  - {fileID: 474432, guid: a1523fa9661571e4b96032321833d6d7, type: 2}
+  - {fileID: 406102, guid: e5fe9190ab8e96b4982be0d4d519c707, type: 2}
   tagToPlayEffectOn: Ball
 --- !u!114 &11406198
 MonoBehaviour:
@@ -1030,9 +1030,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411b69d9b1ba73f4fbb51c87c834840b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 0.1
-  mass: 10
-  minDistanceToPoint: 0.01
+  maxSpeed: 0.015
+  mass: 12.5
+  minDistanceToPoint: 0.05
 --- !u!114 &11425686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1085,6 +1085,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myInfoVisual: {fileID: 459232}
   myHead: {fileID: 485076}
+  pointVisual: {fileID: 138982, guid: ee74438548e90ba4fba2e60738ecd92f, type: 2}
+  isStudent: 1
 --- !u!114 &11494268
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -55,10 +55,8 @@ public class GoToPointSmooth : MonoBehaviour
         currentPosition = transform.position;
 
         while (CheckDistanceToPoint()) {
-            
             // we berekenen eerst de afstand/Vector tot de 'target' (in dit voorbeeld het mikpunt)		
             Vector2 desiredStep = currentPoint - currentPosition;
-
             // deze desiredStep mag niet groter zijn dan de maximale Speed
             //
             // als een vector ge'normalized' is .. dan houdt hij dezelfde richting

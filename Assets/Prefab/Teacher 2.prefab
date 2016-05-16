@@ -808,9 +808,10 @@ GameObject:
   - 114: {fileID: 11420120}
   - 114: {fileID: 11497832}
   - 114: {fileID: 11486630}
+  - 114: {fileID: 11433674}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1813,12 +1814,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 185146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
-  m_LocalPosition: {x: 21.540653, y: -0.09239745, z: 59.690037}
-=======
-  m_LocalPosition: {x: 98.332, y: 98.567, z: 5.086789}
->>>>>>> origin/master
-  m_LocalScale: {x: 0.10145352, y: 0.10145353, z: 0.10145353}
+  m_LocalPosition: {x: -1.1207519, y: -0.79992753, z: 59.690037}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 467676}
   m_Father: {fileID: 0}
@@ -2055,6 +2052,23 @@ MonoBehaviour:
   gravityStrength: 0.0035
   minDistance: 0.05
   time: 30
+--- !u!114 &11433674
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 185828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4ffdf59b6f719419074407b6e6f4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffect:
+  - {fileID: 408636, guid: 8d7730770eba9ab4d9dd5a9b72e6c753, type: 2}
+  - {fileID: 430794, guid: 720d4ece67a3b6145967a40a9e8f9e9c, type: 2}
+  - {fileID: 474432, guid: a1523fa9661571e4b96032321833d6d7, type: 2}
+  - {fileID: 406102, guid: e5fe9190ab8e96b4982be0d4d519c707, type: 2}
+  tagToPlayEffectOn: Ball
 --- !u!114 &11446524
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2069,6 +2083,7 @@ MonoBehaviour:
   myInfoVisual: {fileID: 435812}
   myHead: {fileID: 467676}
   pointVisual: {fileID: 138982, guid: ee74438548e90ba4fba2e60738ecd92f, type: 2}
+  isStudent: 0
 --- !u!114 &11452986
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2080,10 +2095,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd02215151cda748a904a1920b53458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 2
+  cooldown: 3
   cooldownRandomizer: 1
-  pushStrength: 10
-  pushStrengthRandomizer: 0.5
+  pushStrength: 6
+  pushStrengthRandomizer: 2
 --- !u!114 &11454932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2108,9 +2123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411b69d9b1ba73f4fbb51c87c834840b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 0.1
-  mass: 10
-  minDistanceToPoint: 0.01
+  maxSpeed: 0.015
+  mass: 12.5
+  minDistanceToPoint: 0.05
 --- !u!114 &11492768
 MonoBehaviour:
   m_ObjectHideFlags: 1

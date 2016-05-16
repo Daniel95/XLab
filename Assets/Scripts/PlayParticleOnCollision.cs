@@ -17,7 +17,7 @@ public class PlayParticleOnCollision : MonoBehaviour {
             StartCoroutine(WaitForParticleFinish(particleEffect));
         }
     }
-
+    
     IEnumerator WaitForParticleFinish(Transform _particleObj) {
         WaitForFixedUpdate _waitForFixedUpdate = new WaitForFixedUpdate();
 

@@ -699,9 +699,10 @@ GameObject:
   - 114: {fileID: 11430016}
   - 114: {fileID: 11439988}
   - 114: {fileID: 11448318}
+  - 114: {fileID: 11488552}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1027,12 +1028,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 143400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< HEAD
-  m_LocalPosition: {x: 8.340319, y: -4.1028843, z: 19.045094}
-=======
-  m_LocalPosition: {x: 97.27265, y: 98.81122, z: 11.636139}
->>>>>>> origin/master
-  m_LocalScale: {x: 0.10145352, y: 0.10145353, z: 0.10145353}
+  m_LocalPosition: {x: -1.1468463, y: -1.8697906, z: 19.045094}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 426898}
   - {fileID: 413412}
@@ -1542,10 +1539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bd02215151cda748a904a1920b53458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cooldown: 2
+  cooldown: 3
   cooldownRandomizer: 1
-  pushStrength: 10
-  pushStrengthRandomizer: 0.5
+  pushStrength: 6
+  pushStrengthRandomizer: 2
 --- !u!114 &11417200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1607,9 +1604,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411b69d9b1ba73f4fbb51c87c834840b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 0.1
-  mass: 10
-  minDistanceToPoint: 0.01
+  maxSpeed: 0.015
+  mass: 12.5
+  minDistanceToPoint: 0.05
 --- !u!114 &11453450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1622,13 +1619,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myInfoVisual: {fileID: 458044}
-<<<<<<< HEAD
-  myHead: {fileID: 0}
-  pointVisual: {fileID: 0}
-=======
   myHead: {fileID: 426898}
   pointVisual: {fileID: 138982, guid: ee74438548e90ba4fba2e60738ecd92f, type: 2}
->>>>>>> origin/master
+  isStudent: 0
+--- !u!114 &11488552
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 198878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4ffdf59b6f719419074407b6e6f4af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  explosionEffect:
+  - {fileID: 408636, guid: 8d7730770eba9ab4d9dd5a9b72e6c753, type: 2}
+  - {fileID: 430794, guid: 720d4ece67a3b6145967a40a9e8f9e9c, type: 2}
+  - {fileID: 474432, guid: a1523fa9661571e4b96032321833d6d7, type: 2}
+  - {fileID: 406102, guid: e5fe9190ab8e96b4982be0d4d519c707, type: 2}
+  tagToPlayEffectOn: Ball
 --- !u!135 &13578042
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1675,8 +1685,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 447782}
   m_AABB:
-    m_Center: {x: 0, y: 0.047641695, z: -0.00000023841858}
-    m_Extent: {x: 0.010000032, y: 0.048102833, z: 0.010000018}
+    m_Center: {x: -0.000000029802322, y: 0.04764171, z: -0.00000023841858}
+    m_Extent: {x: 0.010000007, y: 0.048102852, z: 0.009999938}
   m_DirtyAABB: 0
 --- !u!183 &18396614
 Cloth:
