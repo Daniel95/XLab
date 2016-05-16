@@ -22,55 +22,60 @@ public class ConnectionEffect : MonoBehaviour {
 
         myInfoVisual.GetComponent<ControlledBounce>().ControlBounce = false;
 
-        SpawnWayPoints(_otherOccupier.position);
+        SpawnWayPoints(_otherOccupier);
     }
 
-    void SpawnWayPoints(Vector2 _otherOccupierPosition)
+    void SpawnWayPoints(Transform _otherOccupier)
     {
         WaypointsController waypointsController = myInfoVisual.GetComponent<WaypointsController>();
 
-        Vector2 vectorToTarget = (Vector2)transform.position - _otherOccupierPosition;
+        Vector2 vectorToTarget = transform.position - _otherOccupier.position;
+
+        print(vectorToTarget);
+
+
+        float totalDistance = Vector3.Distance(transform.position, _otherOccupier.position);
+
+        //float editedDistance = totalDistance * 0.25f;
+
+        float editedDistance = 5;
 
         //add points:
-
+        /*
         //point 1
-        waypointsController.AddWaypoint(transform.position);
+        //waypointsController.AddWaypoint(transform.position);
+        Instantiate(pointVisual, transform.position, transform.rotation);
 
-        //point 2:
-        Instantiate(pointVisual, (Vector2)transform.position + new Vector2(vectorToTarget.x / 0.7f, vectorToTarget.y / 0.1f), transform.rotation);
+        //point 2
+        //waypointsController.AddWaypoint(transform.position + transform.right * editedDistance + transform.forward * editedDistance);
+        Instantiate(pointVisual, transform.position + transform.right * editedDistance + transform.up * editedDistance, transform.rotation);
 
         //point 3
-        Instantiate(pointVisual, (Vector2)transform.position + new Vector2(vectorToTarget.x / 0.8f, vectorToTarget.y / 0.4f), transform.rotation);
+        //waypointsController.AddWaypoint((Vector2)transform.position + vectorToTarget / 2);
+        Instantiate(pointVisual, (Vector2)transform.position + vectorToTarget / 2, transform.rotation);
 
         //point 4
-        Instantiate(pointVisual, (Vector2)transform.position + new Vector2(vectorToTarget.x / 0.5f, vectorToTarget.y / 0.5f), transform.rotation);
+        //waypointsController.AddWaypoint(_otherOccupier.position + -_otherOccupier.right * editedDistance + _otherOccupier.forward * editedDistance);
+        Instantiate(pointVisual, _otherOccupier.position + -_otherOccupier.right * editedDistance + _otherOccupier.up * editedDistance, _otherOccupier.rotation);
 
         //point 5
-        Instantiate(pointVisual, (Vector2)transform.position + new Vector2(vectorToTarget.x / 0.2f, vectorToTarget.y / 0.6f), transform.rotation);
+        //waypointsController.AddWaypoint(_otherOccupier.position);
+        Instantiate(pointVisual, _otherOccupier.position, _otherOccupier.rotation);
 
         //point 6
-        Instantiate(pointVisual, (Vector2)transform.position + new Vector2(vectorToTarget.x / 0.2f, vectorToTarget.y / 0.9f), transform.rotation);
+        //waypointsController.AddWaypoint(_otherOccupier.position + _otherOccupier.right * editedDistance + _otherOccupier.forward * editedDistance);
+        Instantiate(pointVisual, _otherOccupier.position + _otherOccupier.right * editedDistance + _otherOccupier.up * editedDistance, _otherOccupier.rotation);
 
         //point 7
-        waypointsController.AddWaypoint(_otherOccupierPosition);
+        //waypointsController.AddWaypoint((Vector2)transform.position + vectorToTarget / 2);
+        Instantiate(pointVisual, (Vector2)transform.position + vectorToTarget / 2, transform.rotation);
 
         //point 8
-        Instantiate(pointVisual, (Vector2)transform.position + new Vector2(vectorToTarget.x / 0.7f, vectorToTarget.y / 0.05f), transform.rotation);
-
-        //point 9
-        Instantiate(pointVisual, (Vector2)transform.position + new Vector2(vectorToTarget.x / 0.7f, vectorToTarget.y / 0.05f), transform.rotation);
-
-        //point 10
-        Instantiate(pointVisual, (Vector2)transform.position + new Vector2(vectorToTarget.x / 0.7f, vectorToTarget.y / 0.05f), transform.rotation);
-
-        //point 11
-        Instantiate(pointVisual, (Vector2)transform.position + new Vector2(vectorToTarget.x / 0.7f, vectorToTarget.y / 0.05f), transform.rotation);
-
-
-        waypointsController.AddWaypoint(_otherOccupierPosition);
+        //waypointsController.AddWaypoint(transform.position + -transform.right * editedDistance + transform.forward * editedDistance);
+        Instantiate(pointVisual, transform.position + -transform.right * editedDistance + transform.up * editedDistance, transform.rotation);   
         
-
-        waypointsController.StartPatrolling();
+        */
+        //waypointsController.StartPatrolling();
     }
 
     public Transform MyInfoVisual {
