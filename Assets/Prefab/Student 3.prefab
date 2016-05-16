@@ -692,7 +692,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myInfoVisual: {fileID: 496274}
   myHead: {fileID: 465078}
-  pointVisual: {fileID: 138982, guid: ee74438548e90ba4fba2e60738ecd92f, type: 2}
 --- !u!114 &11449992
 MonoBehaviour:
   m_ObjectHideFlags: 1

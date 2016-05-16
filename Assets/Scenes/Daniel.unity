@@ -2064,7 +2064,7 @@ MonoBehaviour:
   - {fileID: 190398, guid: e67d3575fe730d149a63143f517e88f7, type: 2}
   teachterToSpawn:
   - {fileID: 132720, guid: c99a32a723f0f214582fabcb61a8ec2a, type: 2}
-  - {fileID: 185146, guid: b1a7bc01cd557e64e813328f7901ae30, type: 2}
+  - {fileID: 129320, guid: b1a7bc01cd557e64e813328f7901ae30, type: 2}
   - {fileID: 143400, guid: 0bd2a50fe1607d746aaf6559cba4788a, type: 2}
   nodeRamdomizerMaxBounds: 0.25
   nodeRamdomizerMinBounds: 0.1
