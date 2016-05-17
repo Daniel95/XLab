@@ -10,14 +10,14 @@ public class GoToPointSmooth : MonoBehaviour
     public ReachedPointMethod ReachedPoint;
 
     [SerializeField]
-    private float maxSpeed = 0.03f;
+    private float maxSpeed = 0.015f;
 
     /** The heavyier the object, the more momentum it has while steering */
     [SerializeField]
-    private float mass = 100;
+    private float mass = 12.5f;
 
     [SerializeField]
-    private float minDistanceToPoint = 0.5f;
+    private float minDistanceToPoint = 0.04f;
 
     /** Vector to save the current velocity, X & Y */
     private Vector2 currentVelocity;

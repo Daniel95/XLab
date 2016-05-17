@@ -27,6 +27,8 @@ GameObject:
   - 114: {fileID: 11404472}
   - 114: {fileID: 11476522}
   - 114: {fileID: 11489438}
+  - 114: {fileID: 11416404}
+  - 82: {fileID: 8260052}
   m_Layer: 0
   m_Name: Teacher 1
   m_TagString: Untagged
@@ -129,7 +131,7 @@ GameObject:
   - 114: {fileID: 11452368}
   - 114: {fileID: 11458382}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: Ball (1)
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -231,7 +233,7 @@ GameObject:
   - 64: {fileID: 6434440}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -554,7 +556,7 @@ Transform:
   m_GameObject: {fileID: 111298}
   m_LocalRotation: {x: -0.50000036, y: -0.5, z: -0.5, w: 0.49999967}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6857143, y: 0.68571436, z: 0.6857144}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
   m_Father: {fileID: 481904}
   m_RootOrder: 0
@@ -626,7 +628,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102036}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.8435007, y: 0.40693092, z: 12.963873}
+  m_LocalPosition: {x: -49.23877, y: -52.305435, z: 12.963873}
   m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 481904}
@@ -914,6 +916,80 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: fa4f8a1ad94ce2f4dbd64a9841e95fef, type: 3}
+--- !u!82 &8260052
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102036}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &9528900
 Animator:
   serializedVersion: 3
@@ -1023,8 +1099,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c02c320a08a244faf2a5e01a1931ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 4
-  minRotateTime: 135
+  minDistance: 3
+  minRotateTime: 130
+--- !u!114 &11416404
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3caf45d33daff6748937cfeacd9ce126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startConnectionSound: {fileID: 8300000, guid: 6c80ed5cb9e989548b9ce7af8c09e753,
+    type: 3}
+  endConnectionSound: {fileID: 8300000, guid: 8f6e494cdabd98849a1cfb129ce57fb9, type: 3}
 --- !u!114 &11425386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1036,9 +1126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e9788b0765688479eb15906606371b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vectToTargetMultiplier: 0.008
+  vectToTargetMultiplier: 0.005
   rotateSpeed: 0.05
   minDistance: 0.05
+  moveAwayDistance: 10
+  moveAwaySpeed: 0.001
 --- !u!114 &11441380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1063,7 +1155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 0.015
   mass: 12.5
-  minDistanceToPoint: 0.05
+  minDistanceToPoint: 0.04
 --- !u!114 &11458382
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1081,6 +1173,7 @@ MonoBehaviour:
   - {fileID: 474432, guid: a1523fa9661571e4b96032321833d6d7, type: 2}
   - {fileID: 406102, guid: e5fe9190ab8e96b4982be0d4d519c707, type: 2}
   tagToPlayEffectOn: Ball
+  changeToSpawnParticle: 0.63
 --- !u!114 &11476522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1092,10 +1185,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db14c87f7d8675245b18a2c0f46fa225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myInfoVisual: {fileID: 419950}
-  myHead: {fileID: 481904}
+  ball: {fileID: 111298}
+  myHead: {fileID: 128318}
   pointVisual: {fileID: 138982, guid: ee74438548e90ba4fba2e60738ecd92f, type: 2}
   isStudent: 0
+  symbolSize: 0.175
 --- !u!114 &11489438
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1124,7 +1218,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 3
   cooldownRandomizer: 1
-  pushStrength: 6
+  pushStrength: 4
   pushStrengthRandomizer: 2
 --- !u!114 &11491828
 MonoBehaviour:
@@ -1197,8 +1291,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 448916}
   m_AABB:
-    m_Center: {x: -0.000000011175871, y: 0.047641724, z: 0}
-    m_Extent: {x: 0.010000011, y: 0.048102833, z: 0.009999975}
+    m_Center: {x: -0.0000009536743, y: 0.047641754, z: 0}
+    m_Extent: {x: 0.009999984, y: 0.048103075, z: 0.009999975}
   m_DirtyAABB: 0
 --- !u!183 &18394950
 Cloth:

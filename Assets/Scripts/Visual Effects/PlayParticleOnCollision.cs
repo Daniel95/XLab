@@ -10,12 +10,30 @@ public class PlayParticleOnCollision : MonoBehaviour {
     [SerializeField]
     private string tagToPlayEffectOn;
 
+    [SerializeField]
+    private float changeToSpawnParticle = 0.63f;
+
+    private bool playedOnce;
+
     private void OnCollisionEnter(Collision _coll) {
         if (_coll.gameObject.tag == tagToPlayEffectOn)
         {
-            Transform particleEffect = Instantiate(explosionEffect[Random.Range(0,explosionEffect.Count)], transform.position, transform.rotation) as Transform;
-            StartCoroutine(WaitForParticleFinish(particleEffect));
+            if (!playedOnce)
+            {
+                SpawnParticle();
+                playedOnce = true;
+            }
+            else {
+                if (Random.Range(0, 0.99f) >= changeToSpawnParticle)
+                    SpawnParticle();
+            }
         }
+    }
+    
+    void SpawnParticle()
+    {
+        Transform particleEffect = Instantiate(explosionEffect[Random.Range(0, explosionEffect.Count)], transform.position, transform.rotation) as Transform;
+        StartCoroutine(WaitForParticleFinish(particleEffect));
     }
     
     IEnumerator WaitForParticleFinish(Transform _particleObj) {

@@ -1,19 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class AnimationBase : MonoBehaviour {
+
+    protected List<Animator> animators = new List<Animator>();
 
     [SerializeField]
     private bool adjustAnimSpeedToActualSpeed = true;
 
     [SerializeField]
-    private float fastSwimSpeedMultiplier;
+    private float fastSwimSpeedMultiplier = 0.1f;
 
     private ChangeRotatingTarget changeRotatingTarget;
 
     private MoveTowards moveTowards;
-
-    protected Animator animator;
 
     protected bool tracking = true;
 
@@ -21,7 +22,14 @@ public class AnimationBase : MonoBehaviour {
         changeRotatingTarget = GetComponent<ChangeRotatingTarget>();
         moveTowards = GetComponent<MoveTowards>();
 
-        animator = transform.GetComponentInChildren<Animator>();
+        if (GetComponent<Animator>() != null) {
+            animators.Add(GetComponent<Animator>());
+        }
+
+        foreach (Animator anim in GetComponentsInChildren<Animator>())
+        {
+            animators.Add(anim);
+        }
 
         if (adjustAnimSpeedToActualSpeed)
             StartCoroutine(TrackSpeed());
@@ -59,7 +67,9 @@ public class AnimationBase : MonoBehaviour {
     
     IEnumerator TrackSpeed() {
         while (tracking) {
-            animator.speed = moveTowards.ActualMoveSpeed * fastSwimSpeedMultiplier;
+            for (int i = 0; i < animators.Count; i++) {
+                animators[i].speed = moveTowards.ActualMoveSpeed * fastSwimSpeedMultiplier;
+            }
             yield return new WaitForFixedUpdate();
         }
     }

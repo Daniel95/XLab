@@ -3,11 +3,17 @@ using System.Collections.Generic;
 
 public class ConnectionEffect : MonoBehaviour {
 
-    [SerializeField]
-    private Transform myInfoVisual;
+    //delegate type
+    public delegate void FinishConnectionMethod();
+
+    //delegate instance
+    public FinishConnectionMethod ConnectionIsFinished;
 
     [SerializeField]
-    private Transform myHead;
+    private GameObject ball;
+
+    [SerializeField]
+    private GameObject myHead;
 
     [SerializeField]
     private GameObject pointVisual;
@@ -15,17 +21,30 @@ public class ConnectionEffect : MonoBehaviour {
     [SerializeField]
     private bool isStudent;
 
+    [SerializeField]
+    private float symbolSize = 0.175f;
+
+    private WaypointsController waypointsController;
+
+    private IgnoreCollisions ignoreCollisionsBall;
+
+    private bool connectionActive;
+
     public void StartEffect(Transform _otherOccupier)
     {
-        //IgnoreCollisions ignoreCollisions = myInfoVisual.GetComponent<IgnoreCollisions>();
-        ConnectionEffect otherConnectionEffect = GetComponent<ConnectionEffect>();
+        waypointsController = ball.GetComponent<WaypointsController>();
 
-        //ignoreCollisions.AddActiveCollision(otherConnectionEffect.MyInfoVisual);
-        //ignoreCollisions.RemoveActiveCollision(myHead);
+        connectionActive = true;
 
-        myInfoVisual.GetComponent<RandomDirectionPush>().Executing = false;
+        ignoreCollisionsBall = ball.GetComponent<IgnoreCollisions>();
+        ConnectionEffect otherConnectionEffect = _otherOccupier.GetComponent<ConnectionEffect>();
 
-        myInfoVisual.GetComponent<ControlledBounce>().ControlBounce = false;
+        ignoreCollisionsBall.AddActiveCollision(otherConnectionEffect.Ball.GetComponent<Collider>());
+        ignoreCollisionsBall.RemoveActiveCollision(myHead.GetComponent<Collider>());
+
+        ball.GetComponent<RandomDirectionPush>().Executing = false;
+
+        ball.GetComponent<ControlledBounce>().ControlBounce = false;
 
         //only spawn the waypoints the other has not spawned them first
         if (isStudent)
@@ -34,13 +53,11 @@ public class ConnectionEffect : MonoBehaviour {
 
     void SpawnWayPoints(Transform _otherOccupier)
     {
-        WaypointsController waypointsController = myInfoVisual.GetComponent<WaypointsController>();
-
         Vector2 vectorToTarget = transform.position - _otherOccupier.position;
 
         float totalDistance = Vector3.Distance(transform.position, _otherOccupier.position);
 
-        float editedDistance = totalDistance * 0.25f;
+        float editedDistance = totalDistance * symbolSize;
 
         List<Vector2> waypointPosition = new List<Vector2>();
 
@@ -50,35 +67,27 @@ public class ConnectionEffect : MonoBehaviour {
 
         //point 1
         waypointPosition.Add(transform.position);
-        //Instantiate(pointVisual, transform.position, transform.rotation);
 
         //point 2
         waypointPosition.Add(transform.position + (transform.up + transform.right) * editedDistance);
-        //Instantiate(pointVisual, transform.position + (transform.up + transform.right) * editedDistance, transform.rotation);
 
         //point 3
         waypointPosition.Add((Vector2)transform.position - vectorToTarget / 2);
-        //Instantiate(pointVisual, (Vector2)transform.position - vectorToTarget / 2, transform.rotation);
 
         //point 4
         waypointPosition.Add(_otherOccupier.position + (_otherOccupier.right + _otherOccupier.up) * editedDistance);
-        //Instantiate(pointVisual, _otherOccupier.position + (_otherOccupier.right + -_otherOccupier.up) * editedDistance, _otherOccupier.rotation);
 
         //point 5
         waypointPosition.Add(_otherOccupier.position);
-        //Instantiate(pointVisual, _otherOccupier.position, _otherOccupier.rotation);
 
         //point 6
         waypointPosition.Add(_otherOccupier.position + (_otherOccupier.right + -_otherOccupier.up) * editedDistance);
-        //Instantiate(pointVisual, _otherOccupier.position + (_otherOccupier.right + _otherOccupier.up) * editedDistance, _otherOccupier.rotation);
 
         //point 7
         waypointPosition.Add((Vector2)transform.position - vectorToTarget / 2);
-        //Instantiate(pointVisual, (Vector2)transform.position - vectorToTarget / 2, transform.rotation);
 
         //point 8
-        waypointPosition.Add(transform.position + (transform.right + -transform.up) * editedDistance);
-        //Instantiate(pointVisual, transform.position + (transform.right + -transform.up) * editedDistance, transform.rotation);   
+        waypointPosition.Add(transform.position + (transform.right + -transform.up) * editedDistance); 
 
         for (int i = 0; i < waypointPosition.Count; i++) {
             waypointsController.AddWaypoint(waypointPosition[i]);
@@ -91,7 +100,29 @@ public class ConnectionEffect : MonoBehaviour {
         waypointsController.StartPatrolling();
     }
 
-    public Transform MyInfoVisual {
-        get { return myInfoVisual; }
+    public void FinishConnection() {
+        if (connectionActive)
+        {
+            waypointsController.FinishedReturning += WaitingForFinishReturn;
+            waypointsController.GoToStartpoint();
+        }
+        else if (ConnectionIsFinished != null)
+        {
+            ConnectionIsFinished();
+        }
+    }
+
+    void WaitingForFinishReturn()
+    {
+        waypointsController.FinishedReturning -= WaitingForFinishReturn;
+
+        ignoreCollisionsBall.RemoveActiveCollision(myHead.GetComponent<Collider>());
+
+        if (ConnectionIsFinished != null)
+            ConnectionIsFinished();
+    }
+
+    public GameObject Ball {
+        get { return ball; }
     }
 }

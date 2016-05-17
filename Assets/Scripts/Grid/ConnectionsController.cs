@@ -40,7 +40,10 @@ public class ConnectionsController : MonoBehaviour {
 
     void ControlGridFunctions(string _unsplitData)
     {
-        //checkUniqueConnections.UpdateConnections(_unsplitData);
+        if (_unsplitData != "")
+            checkUniqueConnections.UpdateConnections(_unsplitData);
+        else
+            gridController.EmptyAllNodes();
     }
 
     void SpawnOccupiers(Node _node, float _nodeSize) {
@@ -73,7 +76,7 @@ public class ConnectionsController : MonoBehaviour {
             }
         }
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         StartCoroutine(RandomIncrementOrDecrement());
     }

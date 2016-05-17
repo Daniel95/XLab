@@ -13,14 +13,21 @@ public class ChangeAnimationSpeed : AnimationBase {
     {
         base.FinishedRotating();
         //Play here the animation when the occupier stands still:
-        animator.speed = finishedRotationSpeed;
+
+        for (int i = 0; i < animators.Count; i++)
+        {
+            animators[i].speed = finishedRotationSpeed;
+        }
     }
 
     public override void SlowSwim()
     {
         base.SlowSwim();
         //Play here the animation when the occupier is close to its destination, and start rotating to the other occupier:
-        animator.speed = slowSwimSpeed;
+        for (int i = 0; i < animators.Count; i++)
+        {
+            animators[i].speed = slowSwimSpeed;
+        }
     }
 
     public override void SwimAway()

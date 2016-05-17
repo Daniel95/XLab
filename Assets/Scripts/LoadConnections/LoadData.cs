@@ -26,7 +26,7 @@ public class LoadData : Cooldown {
         base.Execute();
         //only update when we are done loading
         //UnityEditor.EditorSettings.webSecurityEmulationHostUrl = "http://14411.hosts.ma-cloud.nl/xlab/";
-        LoadValue("http://14411.hosts.ma-cloud.nl/xlab/phptestscript.php", false);
+        //LoadValue("http://14411.hosts.ma-cloud.nl/xlab/phptestscript.php", false);
     }
 
     /*

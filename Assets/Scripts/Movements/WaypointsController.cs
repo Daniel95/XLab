@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public class WaypointsController : MonoBehaviour
 {
+    //delegate type
+    public delegate void DoneReturningToOwnerMethod();
+
+    //delegate instance
+    public DoneReturningToOwnerMethod FinishedReturning;
+
     private List<Vector2> waypoints = new List<Vector2>();
 
     private int waypointIndex;
@@ -13,6 +19,8 @@ public class WaypointsController : MonoBehaviour
     private Vector2 localStartPos;
 
     private int increment = 1;
+
+    private int startWaypoint;
 
     void Awake()
     {
@@ -33,6 +41,9 @@ public class WaypointsController : MonoBehaviour
     //set the next, or first waypoint in the array as target in followpointsmooth.
     private void NextPoint()
     {
+        if (FinishedReturning != null)
+            FinishedReturning();
+
         waypointIndex += increment;
 
        if (waypointIndex >= waypoints.Count)
@@ -47,6 +58,7 @@ public class WaypointsController : MonoBehaviour
     public void StartPatrolling() {
         transform.localPosition = localStartPos;
 
+        startWaypoint = waypointIndex;
         goToPointSmooth.Point = waypoints[waypointIndex];
         goToPointSmooth.StartSeeking();
     }
@@ -70,5 +82,10 @@ public class WaypointsController : MonoBehaviour
     public int WaypointIndex
     {
         set { waypointIndex = value; }
+    }
+
+    public void GoToStartpoint() {
+        waypointIndex = startWaypoint;
+        goToPointSmooth.Point = waypoints[waypointIndex];
     }
 }

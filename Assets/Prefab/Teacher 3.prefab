@@ -361,6 +361,8 @@ GameObject:
   - 114: {fileID: 11417200}
   - 114: {fileID: 11453450}
   - 114: {fileID: 11404110}
+  - 114: {fileID: 11438876}
+  - 82: {fileID: 8233704}
   m_Layer: 0
   m_Name: Teacher 3
   m_TagString: Untagged
@@ -701,7 +703,7 @@ GameObject:
   - 114: {fileID: 11448318}
   - 114: {fileID: 11488552}
   m_Layer: 0
-  m_Name: Ball
+  m_Name: Ball (1)
   m_TagString: Ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1028,7 +1030,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 143400}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.1468463, y: -1.8697906, z: 19.045094}
+  m_LocalPosition: {x: -50.030235, y: -58.637215, z: 19.045094}
   m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children:
   - {fileID: 426898}
@@ -1084,7 +1086,7 @@ Transform:
   m_GameObject: {fileID: 198878}
   m_LocalRotation: {x: -0.50000036, y: -0.5, z: -0.5, w: 0.49999967}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6857143, y: 0.68571436, z: 0.6857144}
+  m_LocalScale: {x: 0.9, y: 0.9, z: 0.9}
   m_Children: []
   m_Father: {fileID: 426898}
   m_RootOrder: 0
@@ -1417,6 +1419,80 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: fa4f8a1ad94ce2f4dbd64a9841e95fef, type: 3}
+--- !u!82 &8233704
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 143400}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!95 &9512606
 Animator:
   serializedVersion: 3
@@ -1526,8 +1602,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54c02c320a08a244faf2a5e01a1931ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 4
-  minRotateTime: 135
+  minDistance: 3
+  minRotateTime: 130
 --- !u!114 &11411466
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1541,7 +1617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cooldown: 3
   cooldownRandomizer: 1
-  pushStrength: 6
+  pushStrength: 4
   pushStrengthRandomizer: 2
 --- !u!114 &11417200
 MonoBehaviour:
@@ -1554,9 +1630,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40e9788b0765688479eb15906606371b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vectToTargetMultiplier: 0.008
+  vectToTargetMultiplier: 0.005
   rotateSpeed: 0.05
   minDistance: 0.05
+  moveAwayDistance: 10
+  moveAwaySpeed: 0.001
 --- !u!114 &11430016
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1582,6 +1660,20 @@ MonoBehaviour:
   gravityStrength: 0.0035
   minDistance: 0.05
   time: 30
+--- !u!114 &11438876
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 143400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3caf45d33daff6748937cfeacd9ce126, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startConnectionSound: {fileID: 8300000, guid: 6c80ed5cb9e989548b9ce7af8c09e753,
+    type: 3}
+  endConnectionSound: {fileID: 8300000, guid: 8f6e494cdabd98849a1cfb129ce57fb9, type: 3}
 --- !u!114 &11439988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1606,7 +1698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxSpeed: 0.015
   mass: 12.5
-  minDistanceToPoint: 0.05
+  minDistanceToPoint: 0.04
 --- !u!114 &11453450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1618,10 +1710,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db14c87f7d8675245b18a2c0f46fa225, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myInfoVisual: {fileID: 458044}
-  myHead: {fileID: 426898}
+  ball: {fileID: 198878}
+  myHead: {fileID: 189182}
   pointVisual: {fileID: 138982, guid: ee74438548e90ba4fba2e60738ecd92f, type: 2}
   isStudent: 0
+  symbolSize: 0.175
 --- !u!114 &11488552
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1639,6 +1732,7 @@ MonoBehaviour:
   - {fileID: 474432, guid: a1523fa9661571e4b96032321833d6d7, type: 2}
   - {fileID: 406102, guid: e5fe9190ab8e96b4982be0d4d519c707, type: 2}
   tagToPlayEffectOn: Ball
+  changeToSpawnParticle: 0.63
 --- !u!135 &13578042
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -1685,8 +1779,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights: []
   m_RootBone: {fileID: 447782}
   m_AABB:
-    m_Center: {x: -0.000000029802322, y: 0.04764171, z: -0.00000023841858}
-    m_Extent: {x: 0.010000007, y: 0.048102852, z: 0.009999938}
+    m_Center: {x: 0, y: 0.0476408, z: 0}
+    m_Extent: {x: 0.009999953, y: 0.0481026, z: 0.009999938}
   m_DirtyAABB: 0
 --- !u!183 &18396614
 Cloth:

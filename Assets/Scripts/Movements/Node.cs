@@ -11,14 +11,11 @@ public class Node {
 
     private bool occupied;
 
-    private GameObject testObj;
-
     private GameObject occupier1;
     private GameObject occupier2;
 
-    public Node(float _x, float _y, GameObject _testObj)
+    public Node(float _x, float _y)
     {
-        testObj = _testObj;
         x = _x;
         y = _y;
     }
@@ -39,11 +36,6 @@ public class Node {
         set { occupied = value; }
     }
 
-    public GameObject TestObj {
-        set { testObj = value; }
-        get { return testObj; }
-    }
-
     public int NodeNumber {
         set { nodeNumber = value; }
         get { return nodeNumber; }
@@ -56,7 +48,7 @@ public class Node {
 
     public void RemoveOccupiers()
     {
-        occupier1.GetComponent<MoveTowards>().MoveAway();
-        occupier2.GetComponent<MoveTowards>().MoveAway();
+        occupier1.GetComponent<MoveTowards>().StartPreparingMoveAway();
+        occupier2.GetComponent<MoveTowards>().StartPreparingMoveAway();
     }
 }

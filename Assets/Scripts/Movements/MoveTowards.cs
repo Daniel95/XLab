@@ -24,13 +24,21 @@ public class MoveTowards : MonoBehaviour
     private float actualMoveSpeed;
 
     [SerializeField]
-    private float vectToTargetMultiplier = 0.008f;
+    private float vectToTargetMultiplier = 0.005f;
 
     [SerializeField]
     private float rotateSpeed = 0.05f;
 
     [SerializeField]
     private float minDistance = 0.05f;
+
+    [SerializeField]
+    private float moveAwayDistance = 10f;
+
+    [SerializeField]
+    private float moveAwaySpeed = 0.001f;
+
+    private ConnectionEffect connectionEffect;
 
     private Quaternion targetRotation;
 
@@ -117,14 +125,27 @@ public class MoveTowards : MonoBehaviour
             FinishedRotating();
     }
 
-    public void MoveAway() {
+    //activated from the node class
+    public void StartPreparingMoveAway() {
         //stop all coroutines, so that it no longer rotates, or moves to its old target
         StopAllCoroutines();
 
+        //let the ball move to its owner, once its done, we activate the MoveAway function when its done returning with a delegate
+        connectionEffect = GetComponent<ConnectionEffect>();
+
+        connectionEffect.ConnectionIsFinished += MoveAway;
+        connectionEffect.FinishConnection();
+    }
+
+    void MoveAway() {
+        connectionEffect.ConnectionIsFinished -= MoveAway;
+
+        vectToTargetMultiplier = moveAwaySpeed;
+
         GridController gridController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GridController>();
 
-        float xPos = gridController.OccupatedNodesRowsRadius + 13f;
-        float yPos = gridController.OccupatedNodesRowsRadius + 13f;
+        float xPos = gridController.OccupatedNodesRowsRadius + moveAwayDistance;
+        float yPos = gridController.OccupatedNodesRowsRadius + moveAwayDistance;
 
         if (Random.Range(0, 0.99f) > 0.5f)
             xPos *= -1;

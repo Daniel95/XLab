@@ -34,11 +34,7 @@ public class GridController : MonoBehaviour {
         nodes = new Node[maxXLength, maxYLength];
         for (int x = 0; x < maxXLength; x++) {
             for (int y = 0; y < maxYLength; y++) {
-                GameObject obj = Instantiate(testObj, new Vector3(0,0), transform.rotation) as GameObject;
-                //nodes[x, y] = new Node(x + xOffSet, y , obj);
-                nodes[x, y] = new Node(x + xOffSet, y, obj);
-                nodes[x, y].TestObj.transform.position = new Vector2(nodes[x, y].X * nodeSize, nodes[x, y].Y * nodeSize);
-                nodes[x, y].TestObj.SetActive(false);
+                nodes[x, y] = new Node(x + xOffSet, y);
             }
         }
     }
@@ -49,7 +45,7 @@ public class GridController : MonoBehaviour {
         int xPosToChange = maxXLength / 2;
 
         int yPosToChange = maxYLength / 2;
-        
+
         //our current, 2d direction
         int xDirection = 1;
 
@@ -128,7 +124,7 @@ public class GridController : MonoBehaviour {
         else
             return false;
     }
-    
+
     //goes back and forth between -1 and 1
     private void BackAndForth(ref int _dir, ref bool _wasPos) {
         //if it is zero, what the direction was when we last changed it
@@ -178,6 +174,18 @@ public class GridController : MonoBehaviour {
                     _node.Occupied = false;
                     break;
                 }
+            }
+        }
+    }
+
+    public void EmptyAllNodes()
+    {
+        foreach (Node _node in nodes)
+        {
+            if (_node.Occupied)
+            {
+                _node.RemoveOccupiers();
+                _node.Occupied = false;
             }
         }
     }
