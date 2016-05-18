@@ -12,6 +12,9 @@ public class LoadData : Cooldown {
     [SerializeField]
     private int connectionsTimeExclusion = 10;
 
+    [SerializeField]
+    private string connections;
+
     private string blindDatesLink = "http://18003.hosts.ma-cloud.nl/light/activeBlindDates.php";
 
     private string connectifConnectionsLink = "http://connectif.nl/index.php?request=json&typeRequest=updateUserReadedMessage&time=";
@@ -20,17 +23,8 @@ public class LoadData : Cooldown {
 
     private string results;
 
-    
-    protected override void Execute()
-    {
-        base.Execute();
-        //only update when we are done loading
-        //UnityEditor.EditorSettings.webSecurityEmulationHostUrl = "http://14411.hosts.ma-cloud.nl/xlab/";
-        //LoadValue("http://14411.hosts.ma-cloud.nl/xlab/phptestscript.php", false);
-    }
-
     /*
-        protected override void Execute()
+    protected override void Execute()
     {
         base.Execute();
         //only update when we are done loading
@@ -75,7 +69,9 @@ public class LoadData : Cooldown {
         else
         {
             loadedConnections = true;
-            results += "-" + _www.text;
+            if(www.text != "") {
+                results += _www.text;
+            }
         }
 
         if (loadedBlindDates && loadedConnections)
@@ -83,6 +79,13 @@ public class LoadData : Cooldown {
     }
     */
 
+    protected override void Execute()
+    {
+        base.Execute();
+        //only update when we are done loading
+        //UnityEditor.EditorSettings.webSecurityEmulationHostUrl = "http://14411.hosts.ma-cloud.nl/xlab/";
+        LoadValue("http://14411.hosts.ma-cloud.nl/xlab/phptestscript.php", false);
+    }
     public void LoadValue(string _link, bool _isBlindDate)
     {
         //the locations of the php file
@@ -109,9 +112,10 @@ public class LoadData : Cooldown {
     void SendInfo()
     {
         if (FinishedLoadingConnections != null)
-            FinishedLoadingConnections(results);
+            FinishedLoadingConnections(connections);
 
         loadedConnections = loadedBlindDates = false;
         results = "";
     }
+    
 }

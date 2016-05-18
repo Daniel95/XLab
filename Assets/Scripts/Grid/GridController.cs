@@ -108,7 +108,6 @@ public class GridController : MonoBehaviour {
 
         if (xPosToChange < maxXLength && yPosToChange < maxYLength)
         {
-            //nodes[xPosToChange, yPosToChange].TestObj.SetActive(true);
             nodes[xPosToChange, yPosToChange].Occupied = true;
             nodes[xPosToChange, yPosToChange].NodeNumber = _nodeNumber;
 
@@ -169,7 +168,6 @@ public class GridController : MonoBehaviour {
         {
             foreach (Node _node in occupiedNodes) {
                 if (_node.NodeNumber == _nodeNumber) {
-                    //_node.TestObj.SetActive(false);
                     _node.RemoveOccupiers();
                     _node.Occupied = false;
                     break;
@@ -188,6 +186,9 @@ public class GridController : MonoBehaviour {
                 _node.Occupied = false;
             }
         }
+
+        //calc the new node radius, so the camera can use that number to zoom in or out
+        occupatedNodesRowsRadius = OccupiedNodesRadius(0);
     }
 
     public int GetOccupiedNodeLength() {

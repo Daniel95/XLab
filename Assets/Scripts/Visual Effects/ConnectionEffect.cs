@@ -34,10 +34,13 @@ public class ConnectionEffect : MonoBehaviour {
     {
         waypointsController = ball.GetComponent<WaypointsController>();
 
-        connectionActive = true;
-
         ignoreCollisionsBall = ball.GetComponent<IgnoreCollisions>();
         ConnectionEffect otherConnectionEffect = _otherOccupier.GetComponent<ConnectionEffect>();
+
+        connectionActive = true;
+
+        if(!otherConnectionEffect.connectionActive)
+            otherConnectionEffect.StartEffect(transform);
 
         ignoreCollisionsBall.AddActiveCollision(otherConnectionEffect.Ball.GetComponent<Collider>());
         ignoreCollisionsBall.RemoveActiveCollision(myHead.GetComponent<Collider>());
@@ -46,7 +49,7 @@ public class ConnectionEffect : MonoBehaviour {
 
         ball.GetComponent<ControlledBounce>().ControlBounce = false;
 
-        //only spawn the waypoints the other has not spawned them first
+        //only spawn the waypoints if i am a student
         if (isStudent)
             SpawnWayPoints(_otherOccupier);
     }
@@ -103,11 +106,12 @@ public class ConnectionEffect : MonoBehaviour {
     public void FinishConnection() {
         if (connectionActive)
         {
-            waypointsController.FinishedReturning += WaitingForFinishReturn;
             waypointsController.GoToStartpoint();
+            waypointsController.FinishedReturning += WaitingForFinishReturn;
         }
         else if (ConnectionIsFinished != null)
         {
+            Destroy(ball);
             ConnectionIsFinished();
         }
     }
@@ -116,7 +120,9 @@ public class ConnectionEffect : MonoBehaviour {
     {
         waypointsController.FinishedReturning -= WaitingForFinishReturn;
 
-        ignoreCollisionsBall.RemoveActiveCollision(myHead.GetComponent<Collider>());
+        Destroy(ball);
+
+        ignoreCollisionsBall.AddActiveCollision(myHead.GetComponent<Collider>());
 
         if (ConnectionIsFinished != null)
             ConnectionIsFinished();
@@ -124,5 +130,10 @@ public class ConnectionEffect : MonoBehaviour {
 
     public GameObject Ball {
         get { return ball; }
+    }
+
+    public bool ConnectionActive {
+        set { connectionActive = value; }
+        get { return connectionActive; }
     }
 }

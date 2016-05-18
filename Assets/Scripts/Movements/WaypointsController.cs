@@ -43,16 +43,19 @@ public class WaypointsController : MonoBehaviour
     {
         if (FinishedReturning != null)
             FinishedReturning();
+        else
+        {
 
-        waypointIndex += increment;
+            waypointIndex += increment;
 
-       if (waypointIndex >= waypoints.Count)
-            waypointIndex = 0;
-       else if(waypointIndex < 0)
-            waypointIndex = waypoints.Count - 1;
+            if (waypointIndex >= waypoints.Count)
+                waypointIndex = 0;
+            else if (waypointIndex < 0)
+                waypointIndex = waypoints.Count - 1;
 
-        goToPointSmooth.Point = waypoints[waypointIndex];
-        goToPointSmooth.StartSeeking();
+            goToPointSmooth.Point = waypoints[waypointIndex];
+            goToPointSmooth.StartSeeking();
+        }
     }
 
     public void StartPatrolling() {

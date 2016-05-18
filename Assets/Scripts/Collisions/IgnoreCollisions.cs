@@ -37,7 +37,7 @@ public class IgnoreCollisions : MonoBehaviour
         if (ignoreCollision)
         {
             Physics.IgnoreCollision(myCollider, _collision.collider);
-            ///print("ignored: " + _collision.collider);
+            //print("ignored: " + _collision.collider);
         }
     }
 
